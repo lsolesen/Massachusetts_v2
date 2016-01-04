@@ -1,0 +1,63 @@
+/* C H E C K  O U T  F L O W
+-------------------------------*/
+
+#site.checkout{
+    #sitehead{
+        top: 0 !important;
+        position: absolute !important;
+    }
+}
+.thanksicn{
+    font-size: 85px;
+}
+#checkout-content{
+    padding: 30px 0;
+
+    &.thanks{
+        text-align: center;
+    }
+}
+
+#checkout-next-btn{
+    width: 100%;
+    @media(min-width:@screen-sm){
+        width: auto;
+        float: right;
+    }
+
+}
+
+.checkout-pages{
+    box-shadow: 0 3px 10px rgba(0,0,0,.1);
+    padding:20px;
+    margin-bottom: 50px;
+    @media(min-width:@screen-md){
+        margin: 50px;
+        padding: 50px;
+    }
+}
+
+// Approve page
+#approve-logo,
+#order-logo{
+    text-align: center;
+
+}
+
+.approve-section,
+.order-section{
+    clear: both;
+    border-top: 1px solid rgba(0,0,0,.1);
+    margin-top: 30px;
+    padding-top: 30px;
+    &.about-you{
+        border-top: 0;
+        margin-top: 0;
+    }
+    &.cta{
+        text-align: center;
+    }
+    h1{
+        margin: 0;
+    }
+}

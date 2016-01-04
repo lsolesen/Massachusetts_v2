@@ -1,0 +1,46 @@
+<nav id="breadcrumbs">
+    <div class="container"><div class="row"><div class="col-xs-12">
+        <ol>
+            <{if $current_url == "$baseurl/basket" }>
+                <li id="historyback"><a href="javascript:history.back();">Tilbage</a></li>
+                <li><a href="<{$webshop->getUrl()|escape}>">Forsiden</a></li>
+                <li id="current">Kurven</li>
+            <{elseif $category}>
+                <{assign var="foraeldre" value=$category->getParents()}>
+                <li id="historyback"><a href="javascript:history.back();">Tilbage</a></li>
+                <li><a href="<{$webshop->getUrl()|escape}>">Forsiden</a></li>
+                <{section name="i" loop=$foraeldre}>
+                    <{if $foraeldre[i]->getInMenu()}>
+                        <li><a href="<{$foraeldre[i]->getUrl()|escape}>"><{$foraeldre[i]->getName()|escape}></a></li>
+                    <{/if}>
+                <{/section}>
+                <li id="current"><{$category->getName()|escape}></li>
+            <{elseif $product}>
+                <{assign var="category" value=$product->getMainCategory()}>
+                <{assign var="categoryname" value=$category->getName()|escape}>
+                <{if
+                    $categoryname == "Forsiden" ||
+                    $categoryname == "forsiden" ||
+                    $categoryname == "Forside" ||
+                    $categoryname == "forside" ||
+                    $category == ""
+                }>
+                    <li id="historyback"><a href="javascript:history.back();">Tilbage</a></li>
+                    <li><a href="<{$webshop->getUrl()|escape}>">Forsiden</a></li>
+                    <li>Produktet har ingen hovedkategori!</li>
+                <{else}>
+                    <{assign var="foraeldre" value=$category->getParents()}>
+                    <li id="historyback"><a href="javascript:history.back();">Tilbage</a></li>
+                    <li><a href="<{$webshop->getUrl()|escape}>">Forsiden</a></li>
+                    <{section name="i" loop=$foraeldre}>
+                        <{if $foraeldre[i]->getInMenu()}>
+                            <li><a href="<{$foraeldre[i]->getUrl()|escape}>"><{$foraeldre[i]->getName()|escape}></a></li>
+                        <{/if}>
+                    <{/section}>
+                    <li><a href="<{$category->getUrl()|escape}>"><{$category->getName()|escape}></a></li>
+                    <li id="current"><{$product->getName()|escape}></li>
+                <{/if}>
+            <{/if}>
+        </ol>
+    </div></div></div>
+</nav>

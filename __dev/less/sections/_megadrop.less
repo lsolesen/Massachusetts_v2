@@ -1,0 +1,36 @@
+#sitenav li{
+	.sitenav-expanded{
+		//padding-left: 15px;
+		@media(min-width:@screen-md){
+			padding-left: 0;
+			position: absolute;
+			width: 100%;
+			z-index: 1100;
+			left: 0;
+			display: none;
+			box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+			margin-top:-20px;
+		}
+		.sitenav-expanded-content{
+			@media(min-width:@screen-md){
+				background: #fff;
+			}
+
+			a{
+				padding: 5px 15px;
+				display: block;
+				color: #333;
+				&:hover{
+					text-decoration: none;
+					background: rgba(0,0,0,.1);
+					cursor: pointer;
+				}
+			}
+		}
+	}
+	&:hover{
+		.sitenav-expanded{
+			display: block;
+		}
+	}
+}

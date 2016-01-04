@@ -1,0 +1,52 @@
+<{strip}><{if $basket}>
+	<div id="basket">
+        <div id="basket-content">
+
+            <h3>Indhold i kurven</h3>
+
+            <form class="form-inline" role="form" id="form" method="post" action="/basket">
+
+                <ul id="basket-content-list">
+                    <li class="row" id="basket-content-listhead">
+                        <span class="col-xs-6 col-sm-8 col-md-9 left">Produkt</span><span class="col-xs-6 col-sm-4 col-md-3 right">Pris</span>
+                    </li>
+
+                    <{section name="i" loop=$basket}>
+                    	<{assign var="product" value=$basket[i].product}>
+                    	<li class="basket-content-listitem">
+                            <div class="col-xs-12 col-sm-8 col-md-9 left">
+                                <input type="hidden" name="amount[<{$basket[i].id}>]" value="<{$basket[i].amount}>">
+                                <button type="submit" name="remove_product" value="<{$basket[i].id}>" class="removefrombasket pull-left btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
+                                <span class="basket-content-listitem-amount"><{$basket[i].amount}> stk.</span> <a href="<{$product->getUrl()}>"><{$product->getName()}></a>
+                                <{assign var="attributes" value=$basket[i].attributes}>
+                                <{if $attributes}>
+                                    <div class="basket-content-listitem-attr">
+                                        <{foreach from=$attributes item=a}>
+                                            <span><{$a.name|escape}>: <{$a.value|escape}></span>
+                                        <{/foreach}>
+                                    </div>
+                                <{/if}>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-3 right"><{$webshop->getCurrency()}> <{$product->getRealPrice($basket[i].amount, $basket[i].attributes)|number_format:2:",":"."}></div>
+                        </li>
+                    <{/section}>
+
+                </ul>
+
+                <div id="basket-summary">
+                    <span id="basket-vat">Moms udgør: <{$webshop->getCurrency()}> <{$vat|number_format:2:",":"."}></span><span id="basket-shipping">Levering: <{$webshop->getCurrency()}> <{$shipping_price|number_format:2:",":"."}></span><span id="basket-total">Total: <{$webshop->getCurrency()}> <{$total_price|number_format:2:",":"."}></span>
+                </div>
+
+                <a href="" id="shopon" class="btn btn-default btn-lg">Shop videre</a> <a href="<{$webshop->getUrl()}>/basket" id="checkout-next-btn" class="btn btn-primary btn-lg" name="next">Gå til kurven</a>
+
+            </form>
+
+        </div>
+        <button class="takeover-close">&times;</button>
+    </div>
+<{else}>
+	<div id="basket">
+        <div id="basket-content"><h3>Kurven er tom</h3></div>
+        <button class="takeover-close">&times;</button>
+    </div>
+<{/if}><{/strip}>

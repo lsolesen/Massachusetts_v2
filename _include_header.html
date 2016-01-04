@@ -1,0 +1,34 @@
+<{strip}>
+<div id="upper-sitehead">
+    <div class="container">
+        <{include file="_include_usp-list.html"}>
+        <span class="pull-right">Kundeservice: <strong><a href="tel:0045<{$settings.globale.Telefonnummer|escape|replace:' ':''}>">Tlf. <{$settings.globale.Telefonnummer|escape}></a></strong></span>
+    </div>
+</div>
+<header id="sitehead">
+    <div class="container"><div class="row">
+
+        <button id="sitenav-toggler" class="glyphicon glyphicon-menu-hamburger hidden-md hidden-lg"></button>
+
+        <div class="col-xs-12 col-md-3 col-lg-3" id="logo-container"><{if $settings.globale.Logo}><a href="/" id="logo"><img src="<{$settings.globale.Logo->getSrc(350, 100, 'fit')}>" id="logo-img" alt="<{$webshop->getName()|escape}>"></a><{else}><div class="themeinfo">Du mangler logo. Gå i temaindstillinger</div><{/if}></div>
+        <div class="col-xs-12 col-md-5 col-lg-5" id="nav-container">
+
+            <{include file="_include_mainnavigation.html"}>
+
+        </div>
+        <div class="col-xs-12 col-md-3 col-lg-3" id="sitesearch-container">
+            <div id="sitehead-sitesearch">
+            	<form action="<{$webshop->getUrl()|escape}>/search">
+                    <input id="my_ac" type="text" name="search" value="<{$get.search|escape}>" placeholder="<{$settings.globale.Soegefelttekst|escape}>">
+                    <button id="sitesearch-btn" type="submit" class="glyphicon glyphicon-search"></button>
+                </form>
+            </div>
+        </div>
+		<{if $basket}>
+            <button id="basket-toggler" class="glyphicon glyphicon-shopping-cart cartfull" data-quantity-count="<{$total_amount}>" data-toggle="tooltip" data-placement="bottom" title="<{$webshop->getCurrency()}> <{$total_price|number_format:2:",":"."}> inkl. fragt"></button><{else}>
+            <button id="basket-toggler" class="glyphicon glyphicon-shopping-cart" data-quantity-count="" data-toggle="tooltip" data-placement="bottom" title="Kurven er tom"></button>
+        <{/if}>
+
+    </div></div><!--/.row /.container-->
+
+</header><!--/#sitehead--><{/strip}>

@@ -1,0 +1,116 @@
+<{strip}><!doctype html>
+<!--[if lt IE 9]><html class="ltie9 ancient" lang="da"><![endif]-->
+<!--[if IE 9]><html class="ie9 oldie" lang="da"><![endif]-->
+<!--[if IE 10]><html class="ie10" lang="da"><![endif]-->
+<!--[if !IE]><html lang="da"><![endif]-->
+<!--[if !IE]><!--><html lang="da"><!--<![endif]-->
+    <head>
+        <title><{if $meta_title}><{$meta_title|escape}><{elseif $smarty.capture.title}><{$smarty.capture.title|escape}> – <{$webshop->getName()|escape}><{else}><{$webshop->getName()|escape}><{/if}></title>
+        <meta charset="UTF-8" />
+        <meta name="title" content="<{if $meta_title}><{$meta_title|escape}><{elseif $smarty.capture.title}><{$smarty.capture.title|escape}><{else}><{$webshop->getName()|escape}><{/if}>" />
+        <{if $noindex}>
+			<meta name="robots" content="noindex, follow">
+		<{/if}>
+
+		<{if $meta_description}>
+			<meta name="description" content="<{$meta_description|escape}>">
+		<{/if}>
+
+		<{if $canonical}>
+	        <link rel="canonical" type="text/html" href="<{$canonical|escape}>"/>
+	    <{/if}>
+        <meta property="og:title" content="<{if $meta_title}><{$meta_title|escape}><{elseif $smarty.capture.title}><{$smarty.capture.title|escape}><{else}><{$webshop->getName()|escape}><{/if}>"/>
+        <meta property="og:description" content="<{$meta_description|escape}>" />
+        <meta property="og:image" content="<{if $product}><{assign var='productimages' value=$product->getImages()}><{section name='o' loop=$productimages start=0 max=1}>/<{$productimages[o]->getSrc(770, 15000, 'fit')}><{/section}><{else}><{if $settings.OpenGraph.Standardbillede}><{$baseurl}><{$settings.OpenGraph.Standardbillede->getSrc(1000, 800, 'fit')}><{/if}><{/if}>"/>
+        <meta property="og:site_name" content="<{$webshop->getName()|escape}>" />
+        <meta property="og:url" content="<{$current_url}>" />
+        <{if $product}>
+        <meta property="og:type" content="product" />
+        <meta property="og:price:amount" content="<{$product->getRealPrice()|number_format:2:".":"."}>" />
+        <meta property="og:price:currency" content="<{$webshop->getCurrency()}>" />
+        <meta property="og:availability" content="instock" />
+        <{/if}>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <{if $settings.globale.HomescreenIcon}><link rel="apple-touch-icon-precomposed" href="<{$settings.globale.HomescreenIcon->getSrc(144, 144, 'fit')}>" /><{/if}>
+        <{if $settings.globale.FavIcon}><link rel="shortcut icon" type="image/ico" href="<{$settings.globale.FavIcon->getSrc(16, 16, 'fit')}>" /><{/if}>
+
+        <{if $settings.globale.Sitebaggrundsfarve}>
+            <style>
+                #site{
+                    background: <{$settings.globale.Sitebaggrundsfarve}>;
+                }
+            </style>
+        <{/if}>
+        <{if $webshop->getGaId()}>
+            <script type="text/javascript">
+              var _gaq = _gaq || [];
+              _gaq.push(['_setAccount', '<{$webshop->getGaId()}>']);
+              _gaq.push(['_trackPageview']);
+
+              (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+              })();
+            </script>
+        <{/if}>
+    </head>
+    <body>
+    <{if $settings.globale.GoogleTagManagerKode}>
+        <!-- Google Tag Manager -->
+        <noscript><iframe src="//www.googletagmanager.com/ns.html?id=<{$settings.globale.GoogleTagManagerKode}>"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','<{$settings.globale.GoogleTagManagerKode}>');</script>
+        <!-- End Google Tag Manager -->
+    <{/if}>
+
+    <{$contents}>
+    <!-- Styles - making google happy -->
+    <link rel="stylesheet" type="text/css" href="<{$theme_url}>/css/styles.min.css">
+    <!-- Scripts -->
+    <script type="text/javascript" src="<{$theme_url}>/js/scripts.min.js"></script>
+    <script type="text/javascript">
+        var webshop_url = '<{$baseurl}>';
+    </script>
+    <{if
+        $settings.ShopMessage.Aktiv == 'ja' &&
+        $current_url != "$baseurl/address" ||
+        $current_url != "$baseurl/approve" ||
+        $current_url != "$baseurl/payment"
+    }>
+        <{include file="_include_shopmessage.html"}>
+    <{/if}>
+    <{if
+        $settings.Instagramfeed.Aktivt == 'ja' &&
+        $current_url != "$baseurl/address" ||
+        $current_url != "$baseurl/approve" ||
+        $current_url != "$baseurl/payment"
+     }>
+        <{include file="_include_script_instafeed.html"}>
+    <{/if}>
+
+
+    <{if
+        $settings.globale.Cookiepopup == 'ja' &&
+        $current_url != "$baseurl/address" ||
+        $current_url != "$baseurl/approve" ||
+        $current_url != "$baseurl/payment" ||
+        $current_url != "$baseurl/order" ||
+        $current_url != "$baseurl/thanks"
+    }>
+        <{include file="_include_cookiepolicy.html"}>
+    <{/if}>
+    </body>
+</html><{/strip}>
+
+

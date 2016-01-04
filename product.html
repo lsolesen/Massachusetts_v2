@@ -1,0 +1,104 @@
+<{strip}>
+<{capture name="title"}><{$product->getName()}><{/capture}>
+
+<{assign var="images" value=$product->getImages()}>
+
+<div id="site" class="productpage">
+        <{include file="_include_header.html"}>
+
+        <section id="sitecontent">
+            <{include file="_include_breadcrumbs.html"}>
+            <section id="productpage-content" itemscope itemtype="http://schema.org/Product">
+                <div class="container"><div class="row">
+
+                    <div class="col-xs-12 col-sm-5 col-md-6">
+                        <div id="product-page-image">
+                        	<{section name="j" loop=$images start=0}>
+                        		<img src="<{$images[j]->getSrc(770, 770, 'fit')}>" class="lazyOwl" alt="<{$images[j]->getDescription()|escape}>"  itemprop="image">
+                        	<{/section}>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-7 col-md-6">
+                        <div id="product-info-container">
+                            <h1 itemprop="name"><{$product->getName()|escape}></h1>
+                            <{if $product->getOwnId()}>
+                                <div id="product-info-sku">Varenr. <{$product->getOwnId()}></div>
+                            <{/if}>
+                            <{assign var="supplier" value=$product->getSupplier()}>
+                            <{if $supplier}>
+                                <div id="product-info-brand">fra <span><{$supplier->getName()}></span></div>
+                            <{/if}>
+                            <{if $product->getMetaValue('rating')}><div id="product-info-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"><i class="rating-<{$product->getMetaValue('rating')}>"></i><span itemprop="ratingValue" class="rating-hidden"><{$product->getMetaValue('rating')}></span><span itemprop="ratingCount" class="rating-hidden">1</span></div><{/if}>
+                        	<div id="product-page-cta-container">
+                                <div id="product-page-cta" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                    <div id="product-cta-price">
+                                        <{if $product->getSalePrice()}>
+                                        <div class="product-cta-before">
+                                             <span><{$webshop->getCurrency()}></span> <span><{$product->getPrice()|number_format:2:",":"."}></span>
+                                        </div>
+                                        <{/if}>
+                                        <div class="product-cta-current">
+                                            <span itemprop="priceCurrency"><{$webshop->getCurrency()}></span> <span itemprop="price"><{$product->getRealPrice()|number_format:2:",":"."}></span>
+                                        </div>
+                                    </div>
+									<{include file="_include_addtocart.html"}>
+                                </div>
+
+                            </div>
+                            <div id="product-info-description" itemprop="description">
+                                <div id="product-page-shortdescription"><{$product->getListDescription()}></div>
+                                <div id="product-page-longdescription"><{$product->getParsedDescription()}></div>
+                                <{assign var="youtube" value=$product->getMetaValue("youtube")}>
+                                <{if $youtube}>
+                                    <div class="vidcontainer">
+                                        <iframe src="http://www.youtube.com/embed/<{$youtube|escape}>" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                <{/if}>
+                            </div>
+
+                            <div id="product-page-extras">
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div></div><!--/.row /.container-->
+            </section>
+
+            <{include file="_include_page-persuasion.html"}>
+
+            <{assign var="related" value=$product->getRelatedProducts()}>
+			<{if $related}>
+                <section id="related">
+                    <div class="container">
+                        <div class="col-xs-12">
+
+                            <h3>Relaterede</h3>
+                            <div class="row">
+                                <ul class="product-list" itemscope itemtype="http://schema.org/ItemList">
+                                    <{section name="i" loop=$related}>
+										<{include file="_include_inner-product.html" product=$related[i]}>
+                                    <{/section}>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+			<{/if}>
+
+        </section><!--/#sitecontent-->
+
+        <{include file="_include_footer.html"}>
+
+
+        <button id="totop">Til toppen</button>
+
+        <{include file="_include_cookiepolicy.html"}>
+
+    </div><!--/#site-->
+
+    <{include file="_include_side-basket.html"}>
+
+<{/strip}>

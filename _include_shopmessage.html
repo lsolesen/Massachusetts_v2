@@ -1,0 +1,34 @@
+
+<div id="shopmessage" style="background:<{$settings.ShopMessage.Baggrundsfarve}>;color:<{$settings.ShopMessage.Tekstfarve}>;">
+    <{$settings.ShopMessage.Besked}>
+</div>
+<script type="text/javascript">
+    $(function(){
+        var shopMsgObj          = $('#shopmessage');
+        var siteHeadObj         = $('#sitehead');
+
+        placeShopMsg = function(){
+            shopMsgObj.css('height', 'auto'); // quick reset
+
+            var shopMsgHeight       = shopMsgObj.outerHeight();
+            var currentScreenSize   = $(window).width();
+
+            shopMsgObj.css('height', shopMsgHeight);
+            $('body').css('margin-top', shopMsgHeight);
+
+            if(currentScreenSize < 992){
+                siteHeadObj.css({'top':'auto','top':shopMsgHeight}); // reset
+                shopMsgObj.css('position','fixed');
+            } else {
+                siteHeadObj.css({'top':'auto','top':''}); // reset
+                shopMsgObj.css('position','');
+            }
+        };
+
+        placeShopMsg();
+
+        $(window).resize(function() {
+            placeShopMsg();
+        });
+    });
+</script>

@@ -1,0 +1,103 @@
+<{strip}><footer id="sitefoot">
+    <div id="sitefoot-head">
+        <div class="container"><div class="row"><div class="col-xs-12">
+            <{if $settings.Betalingskort.Dankort == "ja"}><img src="<{$theme_url}>/img/epay-logo-pack/dankort_22.gif" alt="Dankort"><{/if}>
+            <{if $settings.Betalingskort.VISA == "ja"}><img src="<{$theme_url}>/img/epay-logo-pack/visa-22.gif" alt="VISA"><{/if}>
+            <{if $settings.Betalingskort.VISAelektron == "ja"}><img src="<{$theme_url}>/img/epay-logo-pack/electron_22.gif" alt="VISA elektron"><{/if}>
+            <{if $settings.Betalingskort.Master == "ja"}><img src="<{$theme_url}>/img/epay-logo-pack/master_22.gif" alt="Master"><{/if}>
+            <{if $settings.Betalingskort.Maestro == "ja"}><img src="<{$theme_url}>/img/epay-logo-pack/maestro_22.gif" alt="Maestro"><{/if}>
+            <{if $settings.Betalingskort.JCB == "ja"}><img src="<{$theme_url}>/img/epay-logo-pack/jcb_22.gif" alt="JCB"><{/if}>
+            <{if $settings.Betalingskort.AmericanExpress == "ja"}><img src="<{$theme_url}>/img/epay-logo-pack/amex_22.gif" alt="American Express"><{/if}>
+            <{if $settings.Betalingskort.Mobilepay == "ja"}><img src="<{$theme_url}>/img/epay-logo-pack/mobilepay_22.gif" alt="Mobilepay"><{/if}>
+            <p><{if $settings.Betalingskort.Tekst}><{$settings.Betalingskort.Tekst}><{/if}></p>
+        </div></div></div>
+    </div>
+
+    <div id="sitefoot-foot">
+        <div class="container"><div class="row">
+        <div  class="sitefoot-box col-xs-12 col-md-3">
+            <div class="sitefoot-box-inner">
+
+                <{if $settings.Footer.Navn}><h4><{$settings.Footer.Navn}></h4><{/if}>
+                <{if $settings.Footer.Adresse}><{$settings.Footer.Adresse}><br><{/if}>
+                <{if $settings.Footer.Postnr}><{$settings.Footer.Postnr}><{/if}> <{if $settings.Footer.By}><{$settings.Footer.By}><br><br><{/if}>
+                <{if $settings.Footer.Telefon}>Tlf. <a href="tel:0045<{$settings.Footer.Telefon|escape|replace:' ':''}>"><{$settings.Footer.Telefon}></a><br><{/if}>
+                <{if $settings.Footer.Email}><a href="mailto:<{$settings.Footer.Email}>"><{$settings.Footer.Email}></a><br><br><{/if}>
+                <{if $settings.Footer.CVR}>CVR <{$settings.Footer.CVR}><br><{/if}>
+
+            </div>
+        </div>
+        <div  class="sitefoot-box col-xs-12 col-md-3">
+            <div class="sitefoot-box-inner">
+
+                <{assign var="menu" value=$webshop->getMenu("footermenukategorier")}>
+                <{if $menu}>
+                    <{assign var="items" value=$menu->getItems()}>
+                    <ul>
+                        <{section name="i" loop=$items}>
+                            <li class="<{$items[i]->getClass()|escape}>">
+                                <{if $items[i]->getType() == "menu"}>
+                                    <{assign var="subitems" value=$items[i]->getItems()}>
+                                    <{$items[i]->getTitel()|escape}>
+                                    <ul>
+                                        <{section name="j" loop=$subitems}>
+                                            <li class="<{$subitems[j]->getClass()|escape}>"><a href="<{$subitems[j]->getUrl()|escape}>"><{$subitems[j]->getTitel()|escape}></a></li>
+                                        <{/section}>
+                                    </ul>
+                                <{else}>
+                                    <a href="<{$items[i]->getUrl()|escape}>"><{$items[i]->getTitel()|escape}></a>
+                                <{/if}>
+                            </li>
+                        <{/section}>
+                    </ul>
+                <{else}>
+                    <div class="themeinfo">Du mangler at definere menu her. Brug navn: footermenu-kategorier</div>
+                <{/if}>
+
+            </div>
+        </div>
+        <div  class="sitefoot-box col-xs-12 col-md-3">
+            <div class="sitefoot-box-inner">
+
+                <{assign var="menu" value=$webshop->getMenu("footermenupraktisk")}>
+                <{if $menu}>
+                    <{assign var="items" value=$menu->getItems()}>
+                    <ul>
+                        <{section name="i" loop=$items}>
+                            <li class="<{$items[i]->getClass()|escape}>">
+                                <{if $items[i]->getType() == "menu"}>
+                                    <{assign var="subitems" value=$items[i]->getItems()}>
+                                    <{$items[i]->getTitel()|escape}>
+                                    <ul>
+                                        <{section name="j" loop=$subitems}>
+                                            <li class="<{$subitems[j]->getClass()|escape}>"><a href="<{$subitems[j]->getUrl()|escape}>"><{$subitems[j]->getTitel()|escape}></a></li>
+                                        <{/section}>
+                                    </ul>
+                                <{else}>
+                                    <a href="<{$items[i]->getUrl()|escape}>"><{$items[i]->getTitel()|escape}></a>
+                                <{/if}>
+                            </li>
+                        <{/section}>
+                    </ul>
+                <{else}>
+                    <div class="themeinfo">Du mangler at definere menu her. Brug navn: footermenu-praktisk</div>
+                <{/if}>
+
+            </div>
+        </div>
+        <div class="sitefoot-box col-xs-12 col-md-3">
+            <div class="sitefoot-box-inner somelinks">
+                <{if $settings.SocialeMedieLinks.Overskrift}><h4><{$settings.SocialeMedieLinks.Overskrift}></h4><{/if}>
+                <{if $settings.SocialeMedieLinks.Facebook}><a href="<{$settings.SocialeMedieLinks.Facebook}>" class="icon-facebook someicn"></a><{/if}>
+                <{if $settings.SocialeMedieLinks.Instagram}><a href="<{$settings.SocialeMedieLinks.Instagram}>" class="icon-instagram someicn"></a><{/if}>
+                <{if $settings.SocialeMedieLinks.Pinterest}><a href="<{$settings.SocialeMedieLinks.Pinterest}>" class="icon-pinterest someicn"></a><{/if}>
+                <{if $settings.SocialeMedieLinks.GooglePlus}><a href="<{$settings.SocialeMedieLinks.GooglePlus}>" class="icon-googleplus someicn"></a><{/if}>
+                <{if $settings.SocialeMedieLinks.Twitter}><a href="<{$settings.SocialeMedieLinks.Twitter}>" class="icon-twitter someicn"></a><{/if}>
+                <{if $settings.SocialeMedieLinks.Linkedin}><a href="<{$settings.SocialeMedieLinks.Linkedin}>" class="icon-linkedin someicn"></a><{/if}>
+            </div>
+        </div>
+    </div>
+    </div></div><!--/.row /.container-->
+</footer><!--/#sitefoot-->
+
+<{/strip}>

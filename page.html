@@ -1,0 +1,64 @@
+<{strip}><{capture name="title"}><{$page->getHeadline()}><{/capture}>
+
+    <div id="site" class="staticpage">
+        <{include file="_include_header.html"}>
+        <section id="sitecontent">
+
+            <section id="page-content">
+                <div class="container"><div class="row"><div class="col-xs-12 col-md-8 col-md-offset-2">
+                    <h1><{$page->getHeadline()|escape}></h1>
+
+                    <{assign var="images" value=$page->getImages()}>
+                    <{if $images}>
+                        <div class="pageimages">
+
+                            <{if $images|@count == 1}>
+
+                                <{section name="i" loop=$images}>
+                                    <img src="<{$images[i]->getSrc(300, 300, 'fit')}>" alt="$images[i]->getDescription()|escape" <{$images[i]->getHtmlSize(300, 300, 'fit')}>/>
+                                <{/section}>
+
+                            <{elseif $images|@count < 3}>
+
+                                <{section name="i" loop=$images}>
+                                    <img src="<{$images[i]->getSrc(150, 150, 'box')}>" alt="$images[i]->getDescription()|escape" <{$images[i]->getHtmlSize(150, 150, 'box')}>/>
+                                <{/section}>
+
+                            <{elseif $images|@count < 6}>
+
+                                <{section name="i" loop=$images}>
+                                    <img src="<{$images[i]->getSrc(100, 100, 'box')}>" alt="$images[i]->getDescription()|escape" <{$images[i]->getHtmlSize(100, 100, 'box')}>/>
+                                    <{if $smarty.section.i.index%3 == 2}><br/><{/if}>
+                                <{/section}>
+
+                            <{else}>
+
+                                <{section name="i" loop=$images}>
+                                    <img src="<{$images[i]->getSrc(50, 50, 'box')}>" alt="$images[i]->getDescription()|escape" <{$images[i]->getHtmlSize(50, 50, 'box')}>/>
+                                    <{if $smarty.section.i.index%3 == 2}><br/><{/if}>
+                                <{/section}>
+
+                            <{/if}>
+
+                        </div>
+                    <{/if}>
+
+                    <{$page->getText()}>
+
+
+                </div></div></div><!--/.row /.container-->
+            </section>
+
+        </section><!--/#sitecontent-->
+
+        <{include file="_include_footer.html"}>
+
+        <button id="totop">Til toppen</button>
+
+        <{include file="_include_cookiepolicy.html"}>
+
+    </div><!--/#site-->
+
+    <{include file="_include_side-basket.html"}>
+
+<{/strip}>

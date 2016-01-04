@@ -1,0 +1,49 @@
+#breadcrumbs{
+    ol{
+        margin:10px 0;
+        padding:0;
+    	display: none;
+    	font-size: 70%;
+        text-transform: uppercase;
+    	@media (min-width: @screen-sm){
+    		display: block;
+    	}
+    	li{
+    		padding-left: 0;
+            display: inline-block;
+            a{
+                color: #333;
+                opacity: .7;
+
+                &:after{
+                    content: '›';
+                    margin: 0 10px;
+                }
+                &:hover{
+                    text-decoration: none !important;
+                    opacity: 1;
+                }
+            }
+            &#historyback{
+                a{
+                    &:after{
+                        content: '';
+                        margin: 0;
+                    }
+                }
+                &:before{
+                    content: '‹';
+                    margin-right: 5px;
+                }
+                &:after{
+                    content: '|';
+                    margin: 0 10px;
+                }
+            }
+            &#current{
+                font-weight: 700;
+            }
+
+    	}
+    }
+}

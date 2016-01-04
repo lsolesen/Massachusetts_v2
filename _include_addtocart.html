@@ -1,0 +1,74 @@
+<{strip}>
+<{assign var="profile" value=$product->getProfile()}>
+<{assign var="attr" value=$profile->getAttributeList()}>
+<{if $product->getIsInStock()}>
+	<form action="" method="post" id="putinbasketform">
+		<input type="hidden" name="product_id" value="<{$product->getProductId()}>"/>
+		<input type="hidden" name="redirect" value="<{$product->getMetaValue('redirect')|escape}>"/>
+		<div id="product-cta-action">
+			<{if $product->hasVariant()}>
+	            <div class="product-variant-selecter">
+
+	        		<{section name="j" loop=$attr}>
+					<div>
+					    <{if $attr[j]->getIsVariant()}>
+					    	<{if $attr[j]->getDataType() == "valuelist"}>
+					        	<{assign var="values" value=$attr[j]->getValues()}>
+					            <select name="attributes[<{$attr[j]->getAttributeId()}>]" id="a<{$attr[j]->getAttributeId()}>" class="attribute required variant" required>
+					            		<option value="" disabled="disabled" selected>Vælg variant</option>
+					                    <{section name="k" loop=$values}>
+					                        <{assign var="attribute_price" value=$product->getAttributePrice($values[k]->getAttributeValueId())}>
+					                        <{if $product->getInStock($attr[j]->getAttributeId(), $values[k]->getAttributeValueId()) > 0}>
+					                        	<option value="<{$values[k]->getAttributeValueId()}>" data-stockamount="<{$product->getInStock($attr[j]->getAttributeId(), $values[k]->getAttributeValueId())}>">
+					                                <{$values[k]->getVal()|escape}>
+					                                <{if $attribute_price}>
+					                                    &nbsp;(<{$attribute_price|number_format:2:",":"."}> <{$webshop->getCurrency()}>)
+					                                <{/if}>
+					                            </option>
+					                        <{/if}>
+					                    <{/section}>
+					            </select>
+					        <{elseif $attr[j]->getDataType() == "string"}>
+								<input type="text" name="attributes[<{$attr[j]->getAttributeId()}>]" id="a<{$attr[j]->getAttributeId()}>" class="attribute"/>
+							<{elseif $attr[j]->getDataType() == "integer"}>
+								<input type="text" name="attributes[<{$attr[j]->getAttributeId()}>]" id="a<{$attr[j]->getAttributeId()}>" class="attribute"/>
+							<{elseif $attr[j]->getDataType() == "boolean"}>
+								<input type="checkbox" name="attributes[<{$attr[j]->getAttributeId()}>]" value="1" id="a<{$attr[j]->getAttributeId()}>" class="attribute"/>
+							<{/if}>
+						<{/if}>
+					</div>
+					<{/section}>
+
+				</div>
+				<{else}>
+					<input type="hidden" id="single-stock-amount" value="<{$product->getInStock($attributes[0].id, $attributes[0].value_id)}>">
+	        <{/if}>
+	        <div class="input-group">
+	            <input type="text" class="form-control" name="amount" id="amount-input" value="1">
+	            <span class="input-group-btn">
+	                <button class="btn btn-primary putinbasket" type="submit" value=" ">Læg i kurv</button>
+	            </span>
+	        </div><!-- /input-group -->
+	    </div>
+	</form>
+<{else}>
+
+	<form action="" method="post" id="remindmeform">
+		<p>Varen er ikke på lager. Få en mail, når den kommer på lager igen</p>
+		<p>(Du bliver samtidigt tilmeldt vores nyhedsbrev)</p>
+		<div id="outofstock-signup-msg"></div>
+		<input type="hidden" name="out_of_stock_signup" value="1"/>
+		<input type="hidden" name="product_id" value="<{$product->getProductId()}>"/>
+		<input type="hidden" name="newsletter" value="1" checked="checked"/>
+		<div class="input-group" id="outofstock-signup-input">
+			<input type="email" class="form-control" name="email" placeholder="Din e-mail-adresse"/>
+			<span class="input-group-btn">
+				<input type="submit" class="btn btn-primary" value="Ja giv mig besked"/>
+			</span>
+		</div>
+	</form>
+
+
+<{/if}>
+
+<{/strip}>

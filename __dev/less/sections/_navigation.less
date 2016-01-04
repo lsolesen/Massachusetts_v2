@@ -1,0 +1,219 @@
+#site{
+	position: relative;
+	top: 0;
+	width: 100%;
+	right: 0;
+	left: 0;
+	-webkit-transition:all .2s ease-in-out;
+	transition:all .2s ease-in-out;
+}
+
+body.toggled-sitenav{
+	#sitenav{
+		-webkit-overflow-scrolling: touch;
+		transform: translate3d(0, 0, 0);
+		li._active{
+			a{
+				border:0 !important;
+			}
+		}
+	}
+}
+
+.takeover-close{
+	display: block;
+	position: absolute;
+	top: 30px;
+	right: 30px;
+	width: 30px;
+	height: 30px;
+	border-radius: 3px;
+	background: #333;
+	color: #fff;
+	border: 0;
+	font-size: 30px;
+	line-height: 30px;
+	padding: 0;
+	text-align: center;
+	font-weight: 300;
+	font-family: Arial, Helvetica, 'Hevletica neue', sans-serif;
+}
+
+#sitenav{
+	position: absolute;
+	transform:translate3d(-100%, 0, 0) rotateY(90deg);
+	transition: all 0.5s;
+	background: rgba(255,255,255,.95);
+	padding-bottom: 50px;
+	top: 0;
+	width: 100%;
+	height: 100vh;
+	left: 0;
+	z-index: 1001;
+	overflow-y: scroll;
+	font-size: 20px;
+	text-transform: uppercase;
+	@media(min-width: @screen-md){
+		font-size: 14px;
+		transform: none;
+		overflow:visible;
+		position: static;
+		width: auto;
+		height: auto;
+		background: transparent;
+		display: block;
+		.takeover-close{
+			display: none;
+		}
+		padding:0;
+	}
+	@media (min-width:@screen-lg){
+		font-size: 16px;
+	}
+	ul{
+		list-style: none;
+		margin: 0;
+		padding: 5%;
+		@media (min-width: @screen-md){
+			padding: 0;
+		}
+		> li{
+			a.tofrontpage{
+				@media(max-width:@screen-xs-max){
+					&:after{
+						content: ' Forsiden';
+					}
+					i{
+						display: none;
+					}
+				}
+			}
+			display: block;
+			@media (min-width: @screen-md){
+				display: inline-block;
+			}
+
+			line-height: 50px;
+			font-weight: 300;
+			> a{
+				cursor: pointer;
+				display: block;
+				@media (min-width: @screen-md){
+					color: @sitehead-fontcolor;
+					padding: 15px 9px;
+				}
+				@media (min-width: @screen-lg){
+					padding: 15px;
+				}
+				.transition(all 200ms ease;);
+
+				&:hover{
+					text-decoration: none;
+					background: rgba(0,0,0,.1);
+					cursor: pointer;
+				}
+			}
+			&._active{
+				a{
+					border-top:3px solid @brand-primary;
+
+					&:hover{
+						@media (min-width: @screen-md){
+							color: @sitehead-fontcolor;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#sitenav-toggler{
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	top: 15px;
+	left: 20px;
+	font-size:20px;
+	background: transparent;
+	border: 0 none;
+	border-radius: @border-radius-base;
+	text-align: center;
+	padding: 0;
+	&:before{
+		font-size:20px;
+	}
+}
+@media (max-width:@screen-md){
+	#logo-container,
+    #nav-container,
+    #sitesearch-container{
+    	position: static !important;
+    }
+}
+#basket-toggler{
+	width: 50px;
+	height: 50px;
+	font-size:14px;
+	border: 0 none;
+	color: @sitehead-fontcolor;
+	border-radius: @border-radius-base;
+	padding: 0;
+	background: transparent;
+	position: absolute;
+	top: 15px;
+	right: 20px;
+	line-height: 1;
+	text-align: center;
+	@media (min-width: @screen-md){
+		position: relative;
+		top: 5px;
+		right: 0;
+		float: right;
+		margin-right: 10px;
+	}
+
+	&.cartfull{
+		background: #efefef;
+		color: #333;
+		&:after{
+			content: (attr(data-quantity-count));
+			position: absolute;
+			top: -10px;
+			right: -10px;
+			background: @brand-primary;
+			width: 24px;
+			height: 24px;
+			line-height: 24px;
+			text-align: center;
+			color: #fff;
+			border-radius: 40px;
+			font-size: 14px;
+			font-family: Helvetica, 'helvetica', Arial, sans-serif;
+			font-weight: 700;
+		}
+	}
+	&.cartempty{
+		&:after{
+			display: none;
+		}
+	}
+	&:before{
+		font-size: 25px;
+	}
+}
+@media(min-width: @screen-md){
+	#basket-toggler{
+		margin-top: 10px;
+	}
+}
+
+
+#shopon{
+	width: 100%;
+	margin-bottom: 5px;
+	@media(min-width:@screen-sm){
+		width: auto;
+		margin-bottom: 0;
+	}
+}
