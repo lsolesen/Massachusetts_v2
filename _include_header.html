@@ -18,13 +18,13 @@
         </div>
         <div class="col-xs-12 col-md-3 col-lg-3" id="sitesearch-container">
             <div id="sitehead-sitesearch">
-            	<form action="<{$webshop->getUrl()|escape}>/search">
+                <form action="<{$webshop->getUrl()|escape}>/search">
                     <input id="my_ac" type="text" name="search" value="<{$get.search|escape}>" placeholder="<{$settings.globale.Soegefelttekst|escape}>">
                     <button id="sitesearch-btn" type="submit" class="glyphicon glyphicon-search"></button>
                 </form>
             </div>
         </div>
-		<{if $basket}>
+        <{if $basket}>
             <button id="basket-toggler" class="glyphicon glyphicon-shopping-cart cartfull" data-quantity-count="<{$total_amount}>" data-toggle="tooltip" data-placement="bottom" title="<{$webshop->getCurrency()}> <{$total_price|number_format:2:",":"."}> inkl. fragt"></button><{else}>
             <button id="basket-toggler" class="glyphicon glyphicon-shopping-cart" data-quantity-count="" data-toggle="tooltip" data-placement="bottom" title="Kurven er tom"></button>
         <{/if}>

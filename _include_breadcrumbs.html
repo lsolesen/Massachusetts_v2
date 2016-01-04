@@ -17,14 +17,7 @@
                 <li id="current"><{$category->getName()|escape}></li>
             <{elseif $product}>
                 <{assign var="category" value=$product->getMainCategory()}>
-                <{assign var="categoryname" value=$category->getName()|escape}>
-                <{if
-                    $categoryname == "Forsiden" ||
-                    $categoryname == "forsiden" ||
-                    $categoryname == "Forside" ||
-                    $categoryname == "forside" ||
-                    $category == ""
-                }>
+                <{if $category == "" }>
                     <li id="historyback"><a href="javascript:history.back();">Tilbage</a></li>
                     <li><a href="<{$webshop->getUrl()|escape}>">Forsiden</a></li>
                     <li>Produktet har ingen hovedkategori!</li>
