@@ -6654,12 +6654,6 @@ body.toggled-basket #basket {
 #basket-total {
   display: block;
 }
-@media (min-width: 768px) {
-  .basketpage h1 {
-    float: left;
-    width: 30%;
-  }
-}
 #basket-persuasion {
   width: 60%;
   float: right;
