@@ -6407,6 +6407,16 @@ body.toggled-basket #basket {
   position: absolute;
   z-index: 1;
 }
+@media (min-width: 768px) {
+  #brandidentity #brandidentity-content {
+    padding: 0 80px;
+  }
+}
+@media (min-width: 992px) {
+  #brandidentity #brandidentity-content {
+    padding: 0 200px;
+  }
+}
 #categorylist {
   margin-top: -70px;
 }

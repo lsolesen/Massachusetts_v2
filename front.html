@@ -8,9 +8,10 @@
             <{if $settings.forside.Forsidebillede}>
                 <section id="brandidentity" style="background-image: url(<{$settings.forside.Forsidebillede->getSrc(1000, 1000, 'fit')}>);">
                     <div id="brandidentity-overlay" style="background-color:<{$settings.forside.Overlayfarve|escape}>;opacity:<{$settings.forside.Overlaygennemsigtighed|escape}>;"></div>
-
-                    <{if $settings.forside.Forsidebilledtekst}><h1 style="color:<{$settings.forside.Tekstfarve|escape}>;"><{$settings.forside.Forsidebilledtekst}></h1><{/if}>
-                    <{if $settings.forside.Undertekst}><h3 style="color:<{$settings.forside.Tekstfarve|escape}>;"><{$settings.forside.Undertekst}></h3><{/if}>
+                    <div id="brandidentity-content">
+                        <{if $settings.forside.Forsidebilledtekst}><h1 style="color:<{$settings.forside.Tekstfarve|escape}>;"><{$settings.forside.Forsidebilledtekst}></h1><{/if}>
+                        <{if $settings.forside.Undertekst}><h3 style="color:<{$settings.forside.Tekstfarve|escape}>;"><{$settings.forside.Undertekst}></h3><{/if}>
+                    </div>
                 </section><!--/#brandidentity-->
             <{else}>
                 <div class="themeinfo" style="min-height:200px;">Du mangler at lægge et forsidebillede på. Gå i temaindstillinger</div>
