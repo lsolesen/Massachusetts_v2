@@ -2240,6 +2240,11 @@ $(function(){
 		lazyLoad : true
 	});
 
+	// Responsive video embeds
+	$('iframe[src*="youtube.com"],iframe[src*="vimeo.com"]').each(function() {
+        $(this).wrap( "<div class='vidcontainer-embed'></div>" );
+    });
+
 
 	function updateform() {
 		$('#form').submit();

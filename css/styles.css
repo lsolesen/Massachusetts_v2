@@ -4984,14 +4984,16 @@ iframe {
     padding-top: 120px;
   }
 }
-.vidcontainer {
+.vidcontainer,
+vidcontainer-embed {
   margin-bottom: 15px;
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
 }
-.vidcontainer iframe {
+.vidcontainer iframe,
+vidcontainer-embed iframe {
   position: absolute;
   top: 0;
   left: 0;
