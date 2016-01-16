@@ -5729,6 +5729,9 @@ body.toggled-sitenav #sitenav li._active a {
   #sitenav li .sitenav-expanded .sitenav-expanded-content {
     background: #fff;
   }
+  #sitenav li .sitenav-expanded .sitenav-expanded-content a {
+    line-height: 1;
+  }
 }
 #sitenav li .sitenav-expanded.expanded {
   display: block;
