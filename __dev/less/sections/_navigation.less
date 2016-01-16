@@ -52,8 +52,9 @@ body.toggled-sitenav{
 	z-index: 1001;
 	overflow-y: scroll;
 	font-size: 20px;
-	text-transform: uppercase;
+
 	@media(min-width: @screen-md){
+		text-transform: uppercase;
 		font-size: 14px;
 		transform: none;
 		overflow:visible;
@@ -72,8 +73,8 @@ body.toggled-sitenav{
 	}
 	ul{
 		list-style: none;
+		padding:0;
 		margin: 0;
-		padding: 5%;
 		@media (min-width: @screen-md){
 			padding: 0;
 		}
@@ -92,14 +93,15 @@ body.toggled-sitenav{
 			@media (min-width: @screen-md){
 				display: inline-block;
 			}
-
+			border-bottom: 1px solid #efefef;
 			line-height: 50px;
 			font-weight: 300;
-			> a{
+			a{
 				cursor: pointer;
 				display: block;
+				padding-left:20px;
+				color: @sitehead-fontcolor;
 				@media (min-width: @screen-md){
-					color: @sitehead-fontcolor;
 					padding: 15px 9px;
 				}
 				@media (min-width: @screen-lg){
@@ -111,6 +113,26 @@ body.toggled-sitenav{
 					text-decoration: none;
 					background: rgba(0,0,0,.1);
 					cursor: pointer;
+				}
+
+			}
+			.subnav-expander{
+				@media(min-width:@screen-md){display: none}
+				float:right;
+				height: 50px;
+				width: 50px;
+				line-height: 50px;
+				border: 0;
+				border-left:1px solid #efefef;
+				background: transparent;
+				&:before{
+					content: '+';
+				}
+				&.expanded {
+					&:before{
+						content: '-';
+					}
+					background: #f5f5f5;
 				}
 			}
 			&._active{

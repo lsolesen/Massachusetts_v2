@@ -5346,10 +5346,10 @@ body.toggled-sitenav #sitenav li._active a {
   z-index: 1001;
   overflow-y: scroll;
   font-size: 20px;
-  text-transform: uppercase;
 }
 @media (min-width: 992px) {
   #sitenav {
+    text-transform: uppercase;
     font-size: 14px;
     transform: none;
     overflow: visible;
@@ -5371,8 +5371,8 @@ body.toggled-sitenav #sitenav li._active a {
 }
 #sitenav ul {
   list-style: none;
+  padding: 0;
   margin: 0;
-  padding: 5%;
 }
 @media (min-width: 992px) {
   #sitenav ul {
@@ -5381,6 +5381,7 @@ body.toggled-sitenav #sitenav li._active a {
 }
 #sitenav ul > li {
   display: block;
+  border-bottom: 1px solid #efefef;
   line-height: 50px;
   font-weight: 300;
 }
@@ -5397,28 +5398,52 @@ body.toggled-sitenav #sitenav li._active a {
     display: inline-block;
   }
 }
-#sitenav ul > li > a {
+#sitenav ul > li a {
   cursor: pointer;
   display: block;
+  padding-left: 20px;
+  color: #333333;
   -webkit-transition: all 200ms ease;
   -o-transition: all 200ms ease;
   transition: all 200ms ease;
 }
 @media (min-width: 992px) {
-  #sitenav ul > li > a {
-    color: #333333;
+  #sitenav ul > li a {
     padding: 15px 9px;
   }
 }
 @media (min-width: 1200px) {
-  #sitenav ul > li > a {
+  #sitenav ul > li a {
     padding: 15px;
   }
 }
-#sitenav ul > li > a:hover {
+#sitenav ul > li a:hover {
   text-decoration: none;
   background: rgba(0, 0, 0, 0.1);
   cursor: pointer;
+}
+#sitenav ul > li .subnav-expander {
+  float: right;
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  border: 0;
+  border-left: 1px solid #efefef;
+  background: transparent;
+}
+@media (min-width: 992px) {
+  #sitenav ul > li .subnav-expander {
+    display: none;
+  }
+}
+#sitenav ul > li .subnav-expander:before {
+  content: '+';
+}
+#sitenav ul > li .subnav-expander.expanded {
+  background: #f5f5f5;
+}
+#sitenav ul > li .subnav-expander.expanded:before {
+  content: '-';
 }
 #sitenav ul > li._active a {
   border-top: 3px solid #507502;
@@ -5686,6 +5711,9 @@ body.toggled-sitenav #sitenav li._active a {
 .autocompleter-hint span {
   color: transparent;
 }
+#sitenav li .sitenav-expanded {
+  display: none;
+}
 @media (min-width: 992px) {
   #sitenav li .sitenav-expanded {
     padding-left: 0;
@@ -5693,7 +5721,6 @@ body.toggled-sitenav #sitenav li._active a {
     width: 100%;
     z-index: 1100;
     left: 0;
-    display: none;
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
     margin-top: -20px;
   }
@@ -5703,18 +5730,14 @@ body.toggled-sitenav #sitenav li._active a {
     background: #fff;
   }
 }
-#sitenav li .sitenav-expanded .sitenav-expanded-content a {
-  padding: 5px 15px;
+#sitenav li .sitenav-expanded.expanded {
   display: block;
-  color: #333;
+  background: #f5f5f5;
 }
-#sitenav li .sitenav-expanded .sitenav-expanded-content a:hover {
-  text-decoration: none;
-  background: rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-}
-#sitenav li:hover .sitenav-expanded {
-  display: block;
+@media (min-width: 992px) {
+  #sitenav li:hover .sitenav-expanded {
+    display: block;
+  }
 }
 body.toggled-basket #basket {
   display: block;

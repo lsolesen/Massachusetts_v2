@@ -2245,6 +2245,12 @@ $(function(){
         $(this).wrap( "<div class='vidcontainer-embed'></div>" );
     });
 
+    //collapsable
+    $('.subnav-expander').click(function(){
+        $(this).toggleClass('expanded');
+        $(this).parent('li').children('.sitenav-expanded').toggleClass('expanded');
+    });
+
 
 	function updateform() {
 		$('#form').submit();

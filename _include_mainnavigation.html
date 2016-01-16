@@ -12,23 +12,24 @@
         <{if $menu}>
             <{assign var="items" value=$menu->getItems()}>
 
-                <{section name="i" loop=$items}>
-                    <li class="<{$items[i]->getClass()|escape}>">
-                        <{if $items[i]->getType() == "menu"}>
-                            <{assign var="subitems" value=$items[i]->getItems()}>
-                            <{section name="j" loop=$subitems start=0 max=1}>
-                                <a href="<{$subitems[j]->getUrl()|escape}>"><{$items[i]->getTitel()|escape}></a>
-                            <{/section}>
-                                <div class="sitenav-expanded"><div class="sitenav-expanded-content">
-                                    <{section name="j" loop=$subitems start=1}>
-                                        <a href="<{$subitems[j]->getUrl()|escape}>"><{$subitems[j]->getTitel()|escape}></a>
-                                    <{/section}>
-                                </div></div>
-                            <{else}>
-                            <a href="<{$items[i]->getUrl()|escape}>"><{$items[i]->getTitel()|escape}></a>
-                        <{/if}>
-                    </li>
-                <{/section}>
+            <{section name="i" loop=$items}>
+                <li class="<{$items[i]->getClass()|escape}>">
+                    <{if $items[i]->getType() == "menu"}>
+                        <{assign var="subitems" value=$items[i]->getItems()}>
+                        <{section name="j" loop=$subitems start=0 max=1}>
+                            <button class="subnav-expander"></button>
+                            <a href="<{$subitems[j]->getUrl()|escape}>"><{$items[i]->getTitel()|escape}></a>
+                        <{/section}>
+                            <div class="sitenav-expanded"><div class="sitenav-expanded-content">
+                                <{section name="j" loop=$subitems start=1}>
+                                    <a href="<{$subitems[j]->getUrl()|escape}>"><{$subitems[j]->getTitel()|escape}></a>
+                                <{/section}>
+                            </div></div>
+                        <{else}>
+                        <a href="<{$items[i]->getUrl()|escape}>"><{$items[i]->getTitel()|escape}></a>
+                    <{/if}>
+                </li>
+            <{/section}>
 
         <{/if}>
     </ul>
