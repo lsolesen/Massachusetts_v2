@@ -5308,13 +5308,6 @@ vidcontainer-embed iframe {
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
-body.toggled-sitenav #sitenav {
-  -webkit-overflow-scrolling: touch;
-  transform: translate3d(0, 0, 0);
-}
-body.toggled-sitenav #sitenav li._active a {
-  border: 0 !important;
-}
 .takeover-close {
   display: block;
   position: absolute;
@@ -5335,17 +5328,22 @@ body.toggled-sitenav #sitenav li._active a {
 }
 #sitenav {
   position: absolute;
-  transform: translate3d(-100%, 0, 0) rotateY(90deg);
   transition: all 0.5s;
-  background: rgba(255, 255, 255, 0.95);
-  padding-bottom: 50px;
+  background: rgba(255, 255, 255, 0.98);
   top: 0;
-  width: 100%;
-  height: 100vh;
   left: 0;
   z-index: 1001;
-  overflow-y: scroll;
   font-size: 20px;
+}
+@media (max-width: 991px) {
+  #sitenav {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    width: 95%;
+    height: 100%;
+    left: -95%;
+    padding-bottom: 50px;
+  }
 }
 @media (min-width: 992px) {
   #sitenav {
@@ -5430,6 +5428,9 @@ body.toggled-sitenav #sitenav li._active a {
   border: 0;
   border-left: 1px solid #efefef;
   background: transparent;
+  font-size: 180%;
+  padding: 0;
+  margin: 0;
 }
 @media (min-width: 992px) {
   #sitenav ul > li .subnav-expander {
@@ -5443,7 +5444,7 @@ body.toggled-sitenav #sitenav li._active a {
   background: #f5f5f5;
 }
 #sitenav ul > li .subnav-expander.expanded:before {
-  content: '-';
+  content: '–';
 }
 #sitenav ul > li._active a {
   border-top: 3px solid #507502;
@@ -5452,6 +5453,14 @@ body.toggled-sitenav #sitenav li._active a {
   #sitenav ul > li._active a:hover {
     color: #333333;
   }
+}
+body.toggled-sitenav #sitenav {
+  -webkit-overflow-scrolling: touch;
+  left: 0;
+  box-shadow: 0 0 100px 50px rgba(0, 0, 0, 0.4);
+}
+body.toggled-sitenav #sitenav li._active a {
+  border: 0 !important;
 }
 #sitenav-toggler {
   width: 50px;
