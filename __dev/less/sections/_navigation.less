@@ -28,15 +28,7 @@
 }
 
 #sitenav{
-	position: absolute;
-	//transform:translate3d(-100%, 0, 0) rotateY(90deg);
-	transition: all 0.5s;
-	background: rgba(255,255,255,.98);
 
-	top: 0;
-	left: 0;
-	z-index: 1001;
-	font-size: 20px;
 	@media(max-width:@screen-sm-max){
 		overflow-y: scroll;
 		-webkit-overflow-scrolling: touch;
@@ -44,6 +36,12 @@
 		height: 100%;
 		left: -95%;
 		padding-bottom: 50px;
+		z-index: 1001;
+		font-size: 20px;
+		position: fixed;
+		transition: all 0.5s;
+		background: rgba(255,255,255,.98);
+		top: 0;
 	}
 
 	@media(min-width: @screen-md){
@@ -89,16 +87,22 @@
 			border-bottom: 1px solid #efefef;
 			line-height: 50px;
 			font-weight: 300;
+			> a{
+				@media(min-width:@screen-md){
+					background: transparent;
+					border-bottom: 0 none;
+				}
+			}
 			a{
 				cursor: pointer;
 				display: block;
 				padding-left:20px;
 				color: @sitehead-fontcolor;
 				@media (min-width: @screen-md){
-					padding: 15px 9px;
+					padding: 14px 9px;
 				}
 				@media (min-width: @screen-lg){
-					padding: 15px;
+					padding: 14px;
 				}
 				.transition(all 200ms ease;);
 

@@ -5326,15 +5326,6 @@ vidcontainer-embed iframe {
   font-weight: 300;
   font-family: Arial, Helvetica, 'Hevletica neue', sans-serif;
 }
-#sitenav {
-  position: absolute;
-  transition: all 0.5s;
-  background: rgba(255, 255, 255, 0.98);
-  top: 0;
-  left: 0;
-  z-index: 1001;
-  font-size: 20px;
-}
 @media (max-width: 991px) {
   #sitenav {
     overflow-y: scroll;
@@ -5343,6 +5334,12 @@ vidcontainer-embed iframe {
     height: 100%;
     left: -95%;
     padding-bottom: 50px;
+    z-index: 1001;
+    font-size: 20px;
+    position: fixed;
+    transition: all 0.5s;
+    background: rgba(255, 255, 255, 0.98);
+    top: 0;
   }
 }
 @media (min-width: 992px) {
@@ -5396,6 +5393,12 @@ vidcontainer-embed iframe {
     display: inline-block;
   }
 }
+@media (min-width: 992px) {
+  #sitenav ul > li > a {
+    background: transparent;
+    border-bottom: 0 none;
+  }
+}
 #sitenav ul > li a {
   cursor: pointer;
   display: block;
@@ -5407,12 +5410,12 @@ vidcontainer-embed iframe {
 }
 @media (min-width: 992px) {
   #sitenav ul > li a {
-    padding: 15px 9px;
+    padding: 14px 9px;
   }
 }
 @media (min-width: 1200px) {
   #sitenav ul > li a {
-    padding: 15px;
+    padding: 14px;
   }
 }
 #sitenav ul > li a:hover {
