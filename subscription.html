@@ -1,0 +1,131 @@
+<{if $subscription}>
+
+	<p class="right">
+		Abonnements ID: <{$subscription->getRecurringOrderId()}>
+	</p>
+
+	<h1>Dit abonnement</h1>
+
+	<br/>
+
+	<p><strong>Status:</strong>
+
+		<{if $subscription->getStatus() == 'active'}>
+			aktiv
+		<{elseif $subscription->getStatus() == 'closed'}>
+			lukket
+		<{/if}>
+	</p>
+	
+	<{if $subscription->getCloseAfter()}>
+		<p style="background:red; color:#fff; padding:10px;">Dette abonnement lukkes d. <{$subscription->getCloseAfter()|date_format:"%d.%m.%Y"}></p>
+	<{/if}>
+
+	<h2>Leveringstidspunkt</h2>
+	<p>Hver
+
+	<{if $subscription->getDeliver() == 'daily'}>
+		dag
+	<{elseif $subscription->getDeliver() == 'weekly'}>
+		uge
+	<{elseif $subscription->getDeliver() == 'monthly'}>
+		måned
+	<{/if}>
+
+	</p>
+
+	<p><strong>Første levering:</strong> <{$subscription->getFirst()|date_format:"%d.%m.%Y"}></p>
+	<{if $subscription->getNext()}>
+		<p><strong>Næste levering:</strong> <{$subscription->getNext()|date_format:"%d.%m.%Y"}></p>
+
+		<form action="" method="post">
+			<div>
+				<strong>Skift næste levering:</strong><br/>
+
+				<div class="float:left;">
+					Hver
+					<input type="number" style="width:25px;" name="interval" value="<{$subscription->getInterval()}>"/>.
+					<{if $subscription->getDeliver() == "daily"}>
+						dag
+					<{elseif $subscription->getDeliver() == "weekly"}>
+						uge
+					<{elseif $subscription->getDeliver() == "monthly"}>
+						måned
+					<{/if}>
+				</div>
+				<input type="date" name="new_next" value="<{$subscription->getNext()|date_format:"%Y-%m-%d"}>" style="display:inline;float:left;"/>
+				<input type="submit" name="open" value="Ret" style="display:inline;float:left;margin:0px;padding:2px;"/>
+				<div class="clear"></div>
+			</div>
+		</form>
+	<{/if}>
+
+	<h2>Abonnementsoplysninger</h2>
+
+	<{assign var="products" value=$subscription->getProducts()}>
+
+	<ul>
+		<{section name="i" loop=$products}>
+			<li>
+				<strong><{$products[i]->getAmount()}> stk. <{$products[i]->getName()|escape}></strong>
+
+				<small><{$webshop->getCurrency()}> <{$products[i]->getRealPrice()|number_format:2:",":"."}></small>
+
+				<{*
+					<{if $products[i]->getSubscriptionFixation()}>
+						<p>Bemærk at der er en bindingsperiode på <{$products[i]->getSubscriptionFixation()}>
+						<{if $products[i]->getSubscriptionInterval() == 'monthly'}>
+							måneder.
+						<{elseif $products[i]->getSubscriptionInterval() == 'weekly'}>
+							uger.
+						<{elseif $products[i]->getSubscriptionInterval() == 'daily'}>
+							dage.
+						<{/if}>
+						<p>
+					<{/if}>
+				*}>
+
+				<{assign var="attributes" value=$products[i]->getAttributes()}>
+				<{if $attributes}>
+					<ul>
+						<{section name="j" loop=$attributes}>
+							<li><{$attributes[j].name}>: <{$attributes[j].val}></li>
+						<{/section}>
+					</ul>
+				<{/if}>
+			</li>
+		<{/section}>
+	</ul>
+	<br/>
+
+	<h3>Bestillingsadresse</h3>
+	<p><{$subscription->getOrderName()|escape}></p>
+	<p><{$subscription->getOrderCompanyName()|escape}></p>
+	<p><{$subscription->getOrderAddress()|escape}></p>
+	<p><{$subscription->getOrderZipcode()|escape}> <{$subscription->getOrderCity()|escape}></p>
+	<p><{$subscription->getOrderCountry()|escape}></p>
+	<p><{$subscription->getPhone()|escape}></p>
+	<br/>
+
+	<h3>Leveringsadresse</h3>
+	<p><{$subscription->getDelName()|escape}></p>
+	<p><{$subscription->getDelCompanyName()|escape}></p>
+	<p><{$subscription->getDelAddress()|escape}></p>
+	<p><{$subscription->getDelZipcode()|escape}> <{$subscription->getDelCity()|escape}></p>
+	<p><{$subscription->getDelCountry()|escape}></p>
+
+	<{if $subscription->getPickupAddress()}>
+		<h3>Du kan hente din pakke hos:</h3>
+		<p><{$subscription->getPickupAddress()|escape|nl2br}></p>
+	<{/if}>
+
+	<form action="" method="post">
+		<{if $subscription->getStatus() == 'active'}>
+			<input type="submit" name="cancel" value="Luk abonnement">
+			<input type="submit" name="newcard" value="Nyt kort">
+		<{elseif $subscription->getStatus() == 'closed'}>
+			<input type="submit" name="open" value="Åben abonnement igen">
+		<{/if}>
+	</form>
+
+<{/if}>
