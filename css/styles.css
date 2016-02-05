@@ -5280,6 +5280,7 @@ vidcontainer-embed iframe {
   background: #111;
   font-size: 150%;
   overflow: hidden;
+  padding: 0;
 }
 #cookiepolicy #cookiepolicy-inner {
   padding: 30px 15px;
