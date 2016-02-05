@@ -5280,6 +5280,7 @@ vidcontainer-embed iframe {
   background: #111;
   font-size: 150%;
   overflow: hidden;
+  padding: 0;
 }
 #cookiepolicy #cookiepolicy-inner {
   padding: 30px 15px;
@@ -6502,6 +6503,26 @@ body.toggled-basket #basket {
   font-size: 90%;
   padding: 0 20px 10px 20px;
   margin-top: -10px;
+}
+@media (max-width: 600px) {
+  .col-pusher-3 {
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .col-pusher-3:first-of-type {
+    margin-left: 12.5%;
+  }
+}
+@media (max-width: 600px) {
+  .col-pusher-2 {
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .col-pusher-2:first-of-type {
+    margin-left: 16.66666667%;
+  }
 }
 #brands {
   padding: 50px 0;
