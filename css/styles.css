@@ -5280,6 +5280,7 @@ vidcontainer-embed iframe {
   background: #111;
   font-size: 150%;
   overflow: hidden;
+  padding: 0;
 }
 #cookiepolicy #cookiepolicy-inner {
   padding: 30px 15px;
@@ -6235,7 +6236,7 @@ body.toggled-basket #basket {
 }
 #product-info-container #product-page-cta-container #product-page-cta #product-cta-action .product-variant-selecter {
   width: 100%;
-  height: 40px;
+  min-height: 40px;
   margin-bottom: 10px;
 }
 #product-info-container #product-page-cta-container #product-page-cta #product-cta-action .product-variant-selecter select {
