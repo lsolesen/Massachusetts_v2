@@ -73,19 +73,6 @@
 						</div>
 						<{/if}>
 
-		                <div id="basket-summary">
-							<span id="basket-vat">Moms udgør: <{$webshop->getCurrency()}> <{$vat|number_format:2:",":"."}></span>
-							<span id="basket-content-shipping">Fragt (leveres til) <span class="country-selecter"><{assign var="countries" value=$webshop->getCountries()}>
-							<{if $countries}>
-									<select name="del_country_id" onchange="$('#form').submit();" id="basket-country" required>
-										<option value="" disabled>Vælg land</option>
-										<{section name="i" loop=$countries}>
-											<option value="<{$countries[i]->getCountryId()}>" <{if $session_del.country_id == $countries[i]->getCountryId()}>selected="selected"<{/if}>><{$countries[i]->getName()|escape}></option>
-										<{/section}>
-									</select>
-							<{/if}></span><{if !$session_del.country_id OR $session_del.country_id == 1431}> <{else}>: <{$webshop->getCurrency()}> <{$shipping_price|number_format:2:",":"."}> <{/if}></span>
-						</div>
-						<{if !$session_del.country_id}>
 						<div id="basket-shipping-shop-select"><div id="basket-shipping-shop-select-pos">
 							<{assign var="shippings" value=$webshop->getShippings()}>
 							<{section name="i" loop=$shippings}>
@@ -96,31 +83,22 @@
 							</label>
 							<{/section}>
 						</div></div>
-						<{else}>
-							<{if $session_del.country_id == 1431}>
-								<div id="basket-shipping-shop-select"><div id="basket-shipping-shop-select-pos">
-									<{assign var="shippings" value=$webshop->getShippings()}>
-									<{section name="i" loop=$shippings}>
-									<label class="line" for="shipping<{$shippings[i]->getShippingId()}>">
-										<input class="shipping" type="radio" onclick="updateform();" module="<{$shippings[i]->getModule()|escape}>" value="<{$shippings[i]->getShippingId()}>" name="shipping_id" id="shipping<{$shippings[i]->getShippingId()}>" <{if $session_del.shipping_id == $shippings[i]->getShippingId()}>checked="checked"<{/if}>/>
-										<span class="shipping-name"><{$shippings[i]->getName()|escape}></span>
-										<span class="shipping-price"><{$shippings[i]->getCost()|number_format:2:",":"."}> <{$webshop->getCurrency()}></span>
-									</label>
-									<{/section}>
-								</div></div>
-							<{else}>
-								<div style="display : none;">
-									<{assign var="shippings" value=$webshop->getShippings()}>
-									<{section name="i" loop=$shippings}>
-										<label class="line" for="shipping<{$shippings[i]->getShippingId()}>">
-											<input class="shipping" type="radio" onclick="updateform();" module="<{$shippings[i]->getModule()|escape}>" value="<{$shippings[i]->getShippingId()}>" name="shipping_id" id="shipping<{$shippings[i]->getShippingId()}>" checked="checked"/>
-											<span><{$shippings[i]->getName()|escape}></span>
-											<span><{$shippings[i]->getCost()|number_format:2:",":"."}> <{$webshop->getCurrency()}></span>
-										</label>
-									<{/section}>
-								</div>
-							<{/if}>
-						<{/if}>
+
+		                <div id="basket-summary">
+							<span id="basket-vat">Moms udgør: <{$webshop->getCurrency()}> <{$vat|number_format:2:",":"."}></span>
+							<span id="basket-content-shipping">Fragt (leveres til) <span class="country-selecter"><{assign var="countries" value=$webshop->getCountries()}>
+							<{if $countries}>
+									<select name="del_country_id" onchange="$('#form').submit();" id="basket-country" required>
+										<option value="" disabled>Vælg land</option>
+										<{section name="i" loop=$countries}>
+											<option value="<{$countries[i]->getCountryId()}>" <{if $session_del.country_id == $countries[i]->getCountryId()}>selected="selected"<{/if}>><{$countries[i]->getName()|escape}></option>
+										<{/section}>
+									</select>
+							<{/if}></span></span>
+						</div>
+
+
+
 						<div id="basket-total">Total: <span><{$webshop->getCurrency()}> <{$total_price|number_format:2:",":"."}></span></div>
 		                <div id="basket-nextstep">
 		                <div id="basket-voucher">
@@ -146,10 +124,10 @@
 	<{include file="_include_checkout-footer.html"}>
 </div>
 
+
 <script type="text/javascript">
 	function updateform() {
 		$('#form').submit();
 	}
 </script>
-
 <{/strip}>
