@@ -2242,28 +2242,27 @@ $(function(){
 
 	// Responsive video embeds
 	$('iframe[src*="youtube.com"],iframe[src*="vimeo.com"]').each(function() {
-        $(this).wrap( "<div class='vidcontainer-embed'></div>" );
-    });
+		$(this).wrap( "<div class='vidcontainer-embed'></div>" );
+	});
 
     //collapsable
     $('.subnav-expander').click(function(){
-        $(this).toggleClass('expanded');
-        $(this).parent('li').children('.sitenav-expanded').toggleClass('expanded');
+    	$(this).toggleClass('expanded');
+    	$(this).parent('li').children('.sitenav-expanded').toggleClass('expanded');
     });
 
+    function updateform() {
+    	$('#form').submit();
+    }
 
-	function updateform() {
-		$('#form').submit();
-	}
+    if($('#remindmeform').length > 0){
+    	var urlstring = window.location.search.substring(1);
+    	if(urlstring == "out_of_stock_signup=1"){
+    		$('#outofstock-signup-msg').append('<div class="alert alert-success" role="alert">Tak! Din e-mail er nu i vores system.</div>');
+    		$('#outofstock-signup-input').hide();
+    	}
 
-	if($('#remindmeform').length > 0){
-		var urlstring = window.location.search.substring(1);
-		if(urlstring == "out_of_stock_signup=1"){
-			$('#outofstock-signup-msg').append('<div class="alert alert-success" role="alert">Tak! Din e-mail er nu i vores system.</div>');
-			$('#outofstock-signup-input').hide();
-		}
-
-	}
+    }
 
 
 });

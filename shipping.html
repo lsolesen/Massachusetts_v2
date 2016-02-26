@@ -1,10 +1,10 @@
 <body class="subpage shippingpage">
-<script type="text/javascript" src="js/scripts.min.js"></script>
-        <div id="site" class="">
+	<script type="text/javascript" src="js/scripts.min.js"></script>
+	<div id="site" class="">
 
-            <{include file="_include_checkout-header.html"}>
+		<{include file="_include_checkout-header.html"}>
 
-        <section id="sitecontent">
+		<section id="sitecontent">
 
 			<section id="checkout-content">
 				<div class="container"><div class="row">
@@ -29,9 +29,8 @@
 										var module = $("#shipping_module").show();
 									}
 								}
-
 							}
-
+							
 							// Loader
 							$("input.shipping").ready(check_module).change(check_module);
 						});
@@ -53,16 +52,16 @@
 
 
 					<form action="" method="post" id="shippingformular">
-					<br>
+						<br>
 
 
-					<{assign var="shippings" value=$webshop->getShippings()}>
-					<{section name="i" loop=$shippings}>
+						<{assign var="shippings" value=$webshop->getShippings()}>
+						<{section name="i" loop=$shippings}>
 						<div class="line" style="">
 							<input class="shipping" type="radio" module="<{$shippings[i]->getModule()|escape}>" value="<{$shippings[i]->getShippingId()}>" name="shipping_id" id="shipping<{$shippings[i]->getShippingId()}>" <{if $session_del.shipping_id == $shippings[i]->getShippingId()}>checked="checked"<{/if}>/>
 							<label for="shipping<{$shippings[i]->getShippingId()}>"><{$shippings[i]->getName()|escape}> <{$shippings[i]->getCost()|number_format:2:",":"."}> <{$webshop->getCurrency()}></label><br/>
 						</div>
-					<{/section}>
+						<{/section}>
 
 						<{if $shops}>
 						<div class="clear" >
@@ -80,7 +79,7 @@
 							</label>
 						</div>
 						<{else}>
-							<p>ingen pakkeshops</p>
+						<p>ingen pakkeshops</p>
 						<{/if}>
 
 						<div class="clear"></div>
@@ -97,9 +96,9 @@
 
 		</section><!--/#sitecontent-->
 
-        <footer id="sitefoot">
+		<footer id="sitefoot">
 
-        </footer><!--/#sitefoot-->
+		</footer><!--/#sitefoot-->
 
 
-    </div><!--/#site-->
+	</div><!--/#site-->
