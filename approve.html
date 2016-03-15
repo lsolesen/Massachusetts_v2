@@ -2,9 +2,9 @@
 	<div class="checkout-pages">
 
 		<{if settings.globale.Logo}>
-			<div id="approve-logo">
-				<a href="/" id="logo" title="<{$webshop->getName()|escape}>"><img src="<{$settings.globale.Logo->getSrc(350, 100, 'fit')}>" id="logo-img" alt="<{$webshop->getName()|escape}>"></a>
-			</div>
+		<div id="approve-logo">
+			<a href="/" id="logo" title="<{$webshop->getName()|escape}>"><img src="<{$settings.globale.Logo->getSrc(350, 100, 'fit')}>" id="logo-img" alt="<{$webshop->getName()|escape}>"></a>
+		</div>
 		<{/if}>
 
 
@@ -18,30 +18,30 @@
 				<h4>Din bestilling</h4>
 
 				<ul id="basket-content-list">
-                    <li class="basket-content-listitem">
-                        <span class="col-xs-6 col-sm-8 col-md-9 left">Produkt</span><span class="col-xs-6 col-sm-4 col-md-3 right">Pris</span>
-                    </li>
+					<li class="basket-content-listitem">
+						<span class="col-xs-6 col-sm-8 col-md-9 left">Produkt</span><span class="col-xs-6 col-sm-4 col-md-3 right">Pris</span>
+					</li>
 
-                    <{section name="i" loop=$basket}>
-						<{assign var="product" value=$basket[i].product}>
-						<li class="basket-content-listitem">
-							<div class="col-xs-12 col-sm-8 col-md-9 left">
-								<input type="hidden" name="amount[<{$basket[i].id}>]" value="<{$basket[i].amount}>"/>
-								<span class="basket-content-listitem-amount"><{$basket[i].amount}> stk.</span> <strong><{$product->getName()|escape}>
-								<{assign var="attributes" value=$basket[i].attributes}>
-								<{if $attributes}>
-									<div class="basket-content-listitem-attr">
-										<{foreach from=$attributes item=a}>
-											<span><{$a.name|escape}>: <{$a.value|escape}></span>
-										<{/foreach}>
-									</div>
-								<{/if}>
-							</strong></div>
-							<div class="col-xs-12 col-sm-4 col-md-3 right"><{$webshop->getCurrency()}> <{$product->getRealPrice($basket[i].amount, $basket[i].attributes)|number_format:2:",":"."}></div>
-						</li>
+					<{section name="i" loop=$basket}>
+					<{assign var="product" value=$basket[i].product}>
+					<li class="basket-content-listitem">
+						<div class="col-xs-12 col-sm-8 col-md-9 left">
+							<input type="hidden" name="amount[<{$basket[i].id}>]" value="<{$basket[i].amount}>"/>
+							<span class="basket-content-listitem-amount"><{$basket[i].amount}> stk.</span> <strong><{$product->getName()|escape}>
+							<{assign var="attributes" value=$basket[i].attributes}>
+							<{if $attributes}>
+							<div class="basket-content-listitem-attr">
+								<{foreach from=$attributes item=a}>
+								<span><{$a.name|escape}>: <{$a.value|escape}></span>
+								<{/foreach}>
+							</div>
+							<{/if}>
+						</strong></div>
+						<div class="col-xs-12 col-sm-4 col-md-3 right"><{$webshop->getCurrency()}> <{$product->getRealPrice($basket[i].amount, $basket[i].attributes)|number_format:2:",":"."}></div>
+					</li>
 					<{/section}>
 
-                </ul>
+				</ul>
 
 				<div id="basket-summary">
 					<span id="basket-vat">Moms udgør: <{$webshop->getCurrency()}> <{$vat|number_format:2:",":"."}></span>
@@ -58,31 +58,31 @@
 					<div class="col-xs-12 col-sm-6">
 						<h4>Faktureringsadresse</h4>
 						<p><{$session_order.name|escape}><br/>
-						<{$session_order.address|escape}><br/>
-						<{$session_order.zipcode|escape}> <{$session_order.city|escape}><br/>
-						<{$session_order.country_name|escape}></p>
-					</div>
-					<div class="col-xs-12 col-sm-6">
-						<h4>Leveringsadresse</h4>
-						<p><{$session_del.name|escape}><br/>
-						<{$session_del.address|escape}><br/>
-						<{$session_del.zipcode|escape}> <{$session_del.city|escape}><br/>
-						<{$session_del.country_name|escape}></p>
-					</div>
-				</div>
+							<{$session_order.address|escape}><br/>
+							<{$session_order.zipcode|escape}> <{$session_order.city|escape}><br/>
+							<{$session_order.country_name|escape}></p>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<h4>Leveringsadresse</h4>
+							<p><{$session_del.name|escape}><br/>
+								<{$session_del.address|escape}><br/>
+								<{$session_del.zipcode|escape}> <{$session_del.city|escape}><br/>
+								<{$session_del.country_name|escape}></p>
+							</div>
+						</div>
 
-				<div>
-					<h4>E-mail-adresse</h4>
-					<p><{$session_order.email|escape}></p>
-				</div>
+						<div>
+							<h4>E-mail-adresse</h4>
+							<p><{$session_order.email|escape}></p>
+						</div>
+
+					</div>
+
+					<div class="approve-section cta">
+						<input type="button" name="prev" class="btn btn-default btn-sm" value="&laquo; Tilbage" onclick="history.go(-1);"/>
+						<input type="submit" name="next" class="btn btn-primary btn-lg" value="Gå til betaling &raquo;" class="ok"/>
+					</div>
+				</form>
 
 			</div>
-
-			<div class="approve-section cta">
-				<input type="button" name="prev" class="btn btn-default btn-sm" value="&laquo; Tilbage" onclick="history.go(-1);"/>
-				<input type="submit" name="next" class="btn btn-primary btn-lg" value="Gå til betaling &raquo;" class="ok"/>
-			</div>
-		</form>
-
-	</div>
-</div></div></div>
+		</div></div></div>

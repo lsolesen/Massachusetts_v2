@@ -6504,6 +6504,26 @@ body.toggled-basket #basket {
   padding: 0 20px 10px 20px;
   margin-top: -10px;
 }
+@media (max-width: 600px) {
+  .col-pusher-3 {
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .col-pusher-3:first-of-type {
+    margin-left: 12.5%;
+  }
+}
+@media (max-width: 600px) {
+  .col-pusher-2 {
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .col-pusher-2:first-of-type {
+    margin-left: 16.66666667%;
+  }
+}
 #brands {
   padding: 50px 0;
   border-top: 1px solid #ddd;
@@ -6608,12 +6628,48 @@ body.toggled-basket #basket {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin-bottom: 50px;
+  /***** CSS Magic to Highlight Stars on Hover *****/
+  /* hover previous stars in list */
 }
 @media (min-width: 992px) {
   .checkout-pages {
     margin: 50px;
     padding: 50px;
   }
+}
+.checkout-pages textarea {
+  width: 80%;
+  max-width: 80%;
+  height: 150px;
+}
+.checkout-pages .rating {
+  border: none;
+  float: left;
+}
+.checkout-pages .rating > input {
+  display: none;
+}
+.checkout-pages .rating > label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  content: "\e006";
+}
+.checkout-pages .rating > label {
+  color: #B2B2B2;
+  float: right;
+}
+.checkout-pages .rating > input:checked ~ label,
+.checkout-pages .rating:not(:checked) > label:hover,
+.checkout-pages .rating:not(:checked) > label:hover ~ label {
+  color: #333;
+}
+.checkout-pages .rating > input:checked + label:hover,
+.checkout-pages .rating > input:checked ~ label:hover,
+.checkout-pages .rating > label:hover ~ input:checked ~ label,
+.checkout-pages .rating > input:checked ~ label:hover ~ label {
+  color: #555;
 }
 #approve-logo,
 #order-logo {
