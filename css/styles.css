@@ -5971,6 +5971,8 @@ body.toggled-basket #basket {
     height: 37px;
     line-height: 37px;
     padding: 6px 12px;
+    border: 1px solid #ccc;
+    vertical-align: middle;
   }
 }
 .product-teaser .product-teaser-inner .product-teaser-cta .product-teaser-quantity {
