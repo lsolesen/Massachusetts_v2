@@ -1,8 +1,11 @@
-<{strip}><div id="cookiepolicy">
-    <button class="closebtn">&times;</button>
-    <div class="container"><div class="row">
-        <div class="col-xs-12" id="cookiepolicy-inner">
-            <{$settings.globale.Cookiepopuptekst}>
-        </div>
-    </div></div>
-</div><!--/#cookiepolicy--><{/strip}>
+
+<{strip}><{if $settings.globale.Cookiepopup == 'ja' }>
+    <div id="cookiepolicy">
+        <button class="closebtn">&times;</button>
+        <div class="container"><div class="row">
+            <div class="col-xs-12" id="cookiepolicy-inner">
+                <{$settings.globale.Cookiepopuptekst}>
+            </div>
+        </div></div>
+    </div><!--/#cookiepolicy-->
+<{/if}><{/strip}>
