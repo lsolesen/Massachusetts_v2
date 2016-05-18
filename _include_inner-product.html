@@ -35,7 +35,7 @@
             </div>
             <{/if}>
         	<{section name="j" loop=$images start=0 max=1}>
-				<img src="<{$theme_url}>/img/spinner.gif" data-layzr="<{$images[j]->getSrc(240,240, 'box')}>" data-layzr-retina="<{$images[j]->getSrc(500,500, 'box')}>" class="product-image" itemprop="image" alt="<{$images[j]->getDescription()|escape}>" />
+				<img src="<{$theme_url}>/img/spinner.gif" data-layzr="<{$images[j]->getSrc(240,240, 'box')}>" data-layzr-retina="<{$images[j]->getSrc(500,500, 'box')}>" class="product-image" itemprop="image" content="<{$images[j]->getSrc(400,400, 'box')}>" alt="<{$images[j]->getDescription()|escape}>" />
 			<{/section}>
 
             <{if $product->getSalePrice() > 0}>
