@@ -58,7 +58,7 @@
                     	<div class="product-teaser-price-before"><span><{$webshop->getCurrency()}></span> <span class="beforeprice"><{$product->getPrice()|number_format:2:",":"."}></span></div>
                     <{/if}>
                     <div class="product-teaser-price-current">
-                        <span itemprop="priceCurrency" class="product-teaser-currency"><{$webshop->getCurrency()}></span>&nbsp;<span itemprop="price" class="product-teaser-price"><{$product->getRealPrice()|number_format:2:",":"."}></span>
+                        <span itemprop="priceCurrency" class="product-teaser-currency"><{$webshop->getCurrency()}></span>&nbsp;<span itemprop="price" class="product-teaser-price" content="<{$product->getRealPrice()|number_format:2:".":""}>"><{$product->getRealPrice()|number_format:2:",":"."}></span>
                     </div>
                     <{if $product->getIsInStock()}>
                         <span itemprop="availability" class="product-teaser-availability instock" >På lager</span>
