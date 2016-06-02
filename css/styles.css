@@ -4985,7 +4985,7 @@ iframe {
   }
 }
 .vidcontainer,
-vidcontainer-embed {
+.vidcontainer-embed {
   margin-bottom: 15px;
   position: relative;
   padding-bottom: 56.25%;
@@ -4993,7 +4993,7 @@ vidcontainer-embed {
   overflow: hidden;
 }
 .vidcontainer iframe,
-vidcontainer-embed iframe {
+.vidcontainer-embed iframe {
   position: absolute;
   top: 0;
   left: 0;
