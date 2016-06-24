@@ -34,6 +34,7 @@ var massachusetts = massachusetts || {};
 @import "components/_massachusetts.checkoutflow.js"
 @import "components/_massachusetts.validator.js";
 @import "components/_massachusetts.suggestivesearch.js";
+@import "components/_massachusetts.newsletterpopup.js";
 
 
 // Doc ready
@@ -45,7 +46,8 @@ $(function(){
 	massachusetts.checkoutflow.init();
 	massachusetts.validator.init();
 	massachusetts.suggestivesearch.init();
-	massachusetts.cookiepolicy.init();
+    massachusetts.cookiepolicy.init();
+    massachusetts.newsletterpopup.init();
 
 
 	// To top scroller

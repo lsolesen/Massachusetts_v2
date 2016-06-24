@@ -7023,6 +7023,81 @@ button.voucher-active {
   margin-bottom: 20px;
   display: block;
 }
+#newsletterpopup {
+  padding: 20px;
+  position: fixed;
+  bottom: -600px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 800;
+}
+@media (max-width: 767px) {
+  #newsletterpopup {
+    width: 90%;
+    max-width: 500px;
+    height: 450px;
+    margin: 0 5%;
+  }
+}
+@media (min-width: 768px) {
+  #newsletterpopup {
+    width: 500px;
+    height: 300px;
+  }
+}
+@media (min-width: 768px) {
+  #newsletterpopup.left {
+    left: 30px;
+  }
+}
+@media (min-width: 768px) {
+  #newsletterpopup.right {
+    right: 30px;
+  }
+}
+#newsletterpopup-deactivate {
+  width: 40px;
+  height: 40px;
+  background: #000;
+  color: #fff;
+  border-radius: 100px;
+  line-height: 1;
+  text-align: center;
+  position: absolute;
+  right: -15px;
+  top: -15px;
+  border: 2px solid #fff;
+}
+#newsletterpopup-reactivate {
+  z-index: 799;
+  position: fixed;
+  height: 60px;
+  line-height: 60px;
+  border: 0 none;
+  bottom: -60px;
+  text-align: center;
+}
+@media (max-width: 767px) {
+  #newsletterpopup-reactivate {
+    width: 90%;
+    max-width: 500px;
+    margin: 0 5%;
+  }
+}
+@media (min-width: 768px) {
+  #newsletterpopup-reactivate {
+    width: 500px;
+  }
+}
+@media (min-width: 768px) {
+  #newsletterpopup-reactivate.left {
+    left: 30px;
+  }
+}
+@media (min-width: 768px) {
+  #newsletterpopup-reactivate.right {
+    right: 30px;
+  }
+}
 /* GLOBALS
 --------------------------------------------------------*/
 /* TYPOGRAPHY

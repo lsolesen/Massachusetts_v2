@@ -114,6 +114,18 @@
             <{include file="_include_cookiepolicy.html"}>
         <{/if}>
     <{/if}>
+
+    <{if $settings.Nyhedsbrevspopup.Aktiv == 'Ja' }>
+        <{if
+            $current_url != "$baseurl/address" &&
+            $current_url != "$baseurl/approve" &&
+            $current_url != "$baseurl/payment" &&
+            $current_url != "$baseurl/order" &&
+            $current_url != "$baseurl/thanks"
+        }>
+            <{include file="_include_newsletterpopup.html"}>
+        <{/if}>
+    <{/if}>
     </body>
 </html><{/strip}>
 

@@ -1,0 +1,17 @@
+<div id="newsletterpopup" class="<{if $settings.Nyhedsbrevspopup.Placering == 'Hoejre'}>right<{elseif $settings.Nyhedsbrevspopup.Placering == 'Venstre'}>left<{/if}>" style="background:<{$settings.Nyhedsbrevspopup.Farve}>;color:<{$settings.ShopMessage.Tekstfarve}>;">
+    <div class="">
+        <{$settings.Nyhedsbrevspopup.Overskrift}>
+        <{$settings.Nyhedsbrevspopup.Tekst}>
+
+        <button><{$settings.Nyhedsbrevspopup.CallToAction}></button>
+    </div>
+    <div class="">
+        <{$settings.Nyhedsbrevspopup.Besked}>
+    </div>
+    <button id="newsletterpopup-deactivate">&times;</button>
+</div>
+
+<button id="newsletterpopup-reactivate" class="<{if $settings.Nyhedsbrevspopup.Placering == 'Hoejre'}>right<{elseif $settings.Nyhedsbrevspopup.Placering == 'Venstre'}>left<{/if}>" style="background:<{$settings.Nyhedsbrevspopup.Genaktiveringsfarve}>;color:<{$settings.Nyhedsbrevspopup.Genaktiveringstekstfarve}>;"><{$settings.Nyhedsbrevspopup.Genaktiveringstekst}></button>
+
+
+<script type="text/javascript">var CookieLifeTime = <{$settings.Nyhedsbrevspopup.Cookielevetid}>; var popupDelay = <{$settings.Nyhedsbrevspopup.Forsinkelse}>;</script>
