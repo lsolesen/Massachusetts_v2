@@ -1,17 +1,23 @@
-<div id="newsletterpopup" class="<{if $settings.Nyhedsbrevspopup.Placering == 'Hoejre'}>right<{elseif $settings.Nyhedsbrevspopup.Placering == 'Venstre'}>left<{/if}>" style="background:<{$settings.Nyhedsbrevspopup.Farve}>;color:<{$settings.ShopMessage.Tekstfarve}>;">
-    <div class="">
-        <{$settings.Nyhedsbrevspopup.Overskrift}>
-        <{$settings.Nyhedsbrevspopup.Tekst}>
+<div id="newsletterpopup" class="<{if $settings.Nyhedsbrevspopup.Placering == 'Hoejre'}>right<{elseif $settings.Nyhedsbrevspopup.Placering == 'Venstre'}>left<{/if}>" style="background:<{$settings.Nyhedsbrevspopup.Farve}>;color:<{$settings.Nyhedsbrevspopup.Tekstfarve}>;border-color:<{$settings.Nyhedsbrevspopup.Rammefarve}>">
+    <div class="newsletterpopup-left">
+        <{if $settings.Nyhedsbrevspopup.Billede}>
+            <img src="<{$settings.Nyhedsbrevspopup.Billede->getSrc(350, 415, 'fit')}>" id="logo-img" alt="">
+        <{/if}>
+    </div>
+    <div class="newsletterpopup-right" style="color:<{$settings.Nyhedsbrevspopup.Tekstfarve}>">
+        <h3 class="newsletterpopup-headline"><{$settings.Nyhedsbrevspopup.Overskrift}></h3>
+        <div class="newsletterpopup-text"><{$settings.Nyhedsbrevspopup.Tekst}></div>
+        <form action="" method="get" id="newsletterpopup-form">
+            <input type="text" id="newsletterpopup-mail" placeholder="Indtast e-mail">
+            <button type="submit" class="btn btn-success" id="newsletterpopup-submit"><{$settings.Nyhedsbrevspopup.CallToAction}></button>
+        </form>
+    </div>
 
-        <button><{$settings.Nyhedsbrevspopup.CallToAction}></button>
+    <div class="newsletterpopup-thankyou">
+        <{$settings.Nyhedsbrevspopup.Takketekst}>
     </div>
-    <div class="">
-        <{$settings.Nyhedsbrevspopup.Besked}>
-    </div>
+
     <button id="newsletterpopup-deactivate">&times;</button>
 </div>
-
 <button id="newsletterpopup-reactivate" class="<{if $settings.Nyhedsbrevspopup.Placering == 'Hoejre'}>right<{elseif $settings.Nyhedsbrevspopup.Placering == 'Venstre'}>left<{/if}>" style="background:<{$settings.Nyhedsbrevspopup.Genaktiveringsfarve}>;color:<{$settings.Nyhedsbrevspopup.Genaktiveringstekstfarve}>;"><{$settings.Nyhedsbrevspopup.Genaktiveringstekst}></button>
-
-
-<script type="text/javascript">var CookieLifeTime = <{$settings.Nyhedsbrevspopup.Cookielevetid}>; var popupDelay = <{$settings.Nyhedsbrevspopup.Forsinkelse}>;</script>
+<script type="text/javascript">var CookieLifeTime = <{$settings.Nyhedsbrevspopup.Cookielevetid}>; var popupDelay = <{$settings.Nyhedsbrevspopup.Forsinkelse}>; var minimumViews = <{$settings.Nyhedsbrevspopup.Antal_minimumsvisninger}>;</script>
