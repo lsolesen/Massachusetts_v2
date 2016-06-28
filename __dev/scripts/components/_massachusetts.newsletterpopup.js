@@ -1,9 +1,10 @@
 massachusetts.newsletterpopup = massachusetts.newsletterpopup || function () {
 
     function init() {
-
-        newsletterPopup();
-        signupSubmit();
+        if($('#newsletterpopup').length > 0){
+            newsletterPopup();
+            signupSubmit();
+        }
     }
 
 
@@ -20,34 +21,35 @@ massachusetts.newsletterpopup = massachusetts.newsletterpopup || function () {
     }
 
     function signupSubmit(){
-        $('#newsletterpopup-submit').submit(function() {
-            var action = $(this).attr('action');
-            loading();
+        $('#newsletterpopup-form').submit(function(e) {
+            var formAction = $(this).attr('action');
+
             $.ajax({
-                url: action,
-                type: 'POST',
-                data: {
-                    email: $('#newsletterpopup-email').val()
-                },
+                url: formAction,
+                type: 'GET',
+                dataType: 'json',
+                data: $(this).serialize(),
                 success: function(data){
-                    formResult(data);
-                    //$('#mailchimp-signup').hide();
                     console.log("Succes: ", data);
                     //you should first check if ga is set
                     if (typeof ga !== 'undefined') {
                         ga('send', 'event', 'NewsletterSignup', 'A new signup via websitepopup');
-                     }
+                    }
                     //check if _gaq is set too
                     if (typeof _gaq !== 'undefined') {
                         _gaq.push(['_trackEvent', 'NewsletterSignup', 'A new signup via websitepopup']);
                     }
+
+                    $('.newsletterpopup-left, .newsletterpopup-right').fadeOut(500, function(){
+                        $('.newsletterpopup-thankyou').fadeIn();
+                    });
                 },
                 error: function(data) {
-                    formResult(data);
                     console.log("Error: ", data);
+                    alert('Hov! Noget gik galt - prøv lige igen...')
                 }
             });
-        return false;
+            e.preventDefault();
         });
     }
 
@@ -65,9 +67,13 @@ massachusetts.newsletterpopup = massachusetts.newsletterpopup || function () {
             $('#newsletterpopup').animate({bottom: "-600px"},500,function(){
                 $('#newsletterpopup-reactivate').animate({bottom: "0px"},200);
             });
-            numberOfDeactivates = parseInt(getNewsletterCookie('massachusettsNewsletterPopup'));
+
+            if(parseInt(getNewsletterCookie('massachusettsNewsletterPopup')) >= 0){
+                numberOfDeactivates = parseInt(getNewsletterCookie('massachusettsNewsletterPopup'));
+            }
             numberOfDeactivates++;
             setNewsletterCookie('massachusettsNewsletterPopup', numberOfDeactivates);
+
         });
 
         $('#newsletterpopup-reactivate').click(function(){

@@ -6,7 +6,7 @@ var massachusetts = massachusetts || {};
 @import "libs/fastclick.js";
 @import "libs/owl/owl.carousel.min.js";
 @import "libs/_jquery.scrolllock.js";
-@import "libs/instafeed.min.js";
+//@import "libs/instafeed.min.js";
 @import "libs/layzr.js";
 @import "libs/_jquery.autocompleter.shoporama-custom.js";
 
@@ -28,7 +28,7 @@ var massachusetts = massachusetts || {};
 // Components
 @import "components/_massachusetts.general.js";
 @import "components/_massachusetts.navigation.js";
-@import "components/_massachusetts.instafeed.js";
+//@import "components/_massachusetts.instafeed.js";
 @import "components/_massachusetts.brandslider.js";
 @import "components/_massachusetts.cookiepolicy.js";
 @import "components/_massachusetts.checkoutflow.js"
