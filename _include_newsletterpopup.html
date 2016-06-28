@@ -7,15 +7,22 @@
     <div class="newsletterpopup-right" style="color:<{$settings.Nyhedsbrevspopup.Tekstfarve}>">
         <h3 class="newsletterpopup-headline"><{$settings.Nyhedsbrevspopup.Overskrift}></h3>
         <div class="newsletterpopup-text"><{$settings.Nyhedsbrevspopup.Tekst}></div>
-        <form action="//dybsort.us7.list-manage.com/subscribe/post-json?u=e5a5143a1dbc5d0bb54c61dbe&amp;id=398a810f6c" id="newsletterpopup-form">
+        <form action="" id="newsletterpopup-form">
             <input type="text" name="EMAIL" id="newsletterpopup-mail" placeholder="Indtast e-mail">
             <button type="submit" class="btn btn-success"  name="subscribe" id="newsletterpopup-submit"><{$settings.Nyhedsbrevspopup.CallToAction}></button>
-            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_e5a5143a1dbc5d0bb54c61dbe_398a810f6c" tabindex="-1" value=""></div>
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="" tabindex="-1" value=""></div>
         </form>
     </div>
 
     <div class="newsletterpopup-thankyou">
         <{$settings.Nyhedsbrevspopup.Takketekst}>
+
+        <!-- Shoporama dev - remove this -->
+
+        <h4>FÅ HJÆLP AF DIN UDVIKLER TIL AT AKTIVERE DETTE</h4>
+
+        <!-- End-remove this -->
+
     </div>
 
     <button id="newsletterpopup-deactivate">&times;</button>
