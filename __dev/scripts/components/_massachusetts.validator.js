@@ -18,7 +18,7 @@ massachusetts.validator = massachusetts.validator || function () {
 
           			return false;
 
-          		} else if( $('#amount-input').val() > $('select.variant').find(':selected').data('stockamount') ){
+                } else if( Number($('#amount-input').val()) > Number($('select.variant').find(':selected').data('stockamount'))){
 
 					alert('Vi har desværre ikke så mange på lager af denne variant');
 
@@ -33,7 +33,7 @@ massachusetts.validator = massachusetts.validator || function () {
 
 			$('.putinbasket').click(function() {
 
-				if( $('#amount-input').val() > $('#single-stock-amount').val()){
+                if( Number($('#amount-input').val()) > Number($('#single-stock-amount').val())){
 
 					alert('Vi har desværre ikke så mange på lager af denne vare');
 

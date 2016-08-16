@@ -7137,10 +7137,9 @@ button.voucher-active {
   height: 100%;
   text-align: center;
   vertical-align: middle;
-  display: table-cell;
   display: none;
-  position: absolute;
   padding: 30px 0 0 0;
+  box-sizing: border-box;
 }
 /* GLOBALS
 --------------------------------------------------------*/
