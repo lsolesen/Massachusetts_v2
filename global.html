@@ -117,12 +117,18 @@
 
     <{if $settings.Nyhedsbrevspopup.Aktiv == 'Ja' }>
         <{if
-            $current_url != "$baseurl/address" &&
-            $current_url != "$baseurl/approve" &&
-            $current_url != "$baseurl/payment" &&
-            $current_url != "$baseurl/order" &&
-            $current_url != "$baseurl/thanks"
+            $current_url == "$baseurl/basket" ||
+            $current_url == "$baseurl/address" ||
+            $current_url == "$baseurl/approve" ||
+            $current_url == "$baseurl/payment" ||
+            $current_url == "$baseurl/order" ||
+            $current_url == "$baseurl/thanks" ||
+            $inc == "payment.html" ||
+            $inc == "order.html" ||
+            $inc == "thanks.html"
         }>
+
+        <{else}>
             <{include file="_include_newsletterpopup.html"}>
         <{/if}>
     <{/if}>
