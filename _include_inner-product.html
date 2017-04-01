@@ -71,7 +71,6 @@
                 <div class="product-teaser-highlight news">NYHED</div>
             <{/if}>
 
-
             <div class="product-teaser-meta">
                 <div class="product-teaser-title" itemprop="name"><{$product->getName()|escape}></div>
                 <div class="product-teaser-brand" itemprop="brand"><{if $supplier}><{$supplier->getName()}><{/if}></div>
@@ -92,7 +91,6 @@
                 </div>
             </div>
         </a>
-
 
         <{if $settings.Produktlister.Laegikurvfraliste == 'ja'}>
             <{if $product->getIsInStock()}>

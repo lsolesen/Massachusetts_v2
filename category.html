@@ -37,8 +37,8 @@
 
             <{assign var="subcats" value=$category->getChildren()}>
             <{if $subcats}>
-
                 <section id="categorylist" class="subcats">
+
                     <div class="container"><div class="row">
 
                         <{section name="i" loop=$subcats}>
@@ -60,7 +60,6 @@
                         <{/section}>
                     </div></div><!--/.container .row-->
                 </section>
-
             <{/if}>
 
             <section id="products">
@@ -107,3 +106,56 @@
 
     <{include file="_include_side-basket.html"}>
 <{/strip}>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script  type="text/javascript">
+    // Prepare selection list
+    $(document).ready(function() {
+        var brands = new Array();
+        $(".product-list").find("li[rel='product']").each(function (i) {
+            console.log("Found brand ", $(this).data("brand"));
+            if($.inArray($(this).data("brand"), brands) === -1) brands.push($(this).data("brand"));
+        });
+
+        brand_box = $("select#sort-brands");
+        console.log("Brand list contains ", brands.length);
+        if (brands != undefined && brands.length > 0 && brand_box) {
+            brands.sort();
+            for (i=0; i < brands.length; i++) {
+                brand = brands[i];
+                $("select#sort-brands").append('<option value="' + brand + '">' + brand + '</option>');
+            }
+        } else {
+            brand_box.hide();
+        }
+    });
+
+    // Filter on brand
+    $('select#sort-brands').change(function() {
+        var filter = $(this).val()
+        console.log("Filter selected ", filter);
+        filterList(filter);
+    });
+
+    // Filter function
+    function filterList(value) {
+        var list = $(".product-list .product");
+        $(list).fadeOut("fast");
+        if (value == "All") {
+            $(".product-list").find("li[rel='product']").each(function (i) {
+                $(this).show();
+            });
+        } else {
+            //Notice this *=" <- This means that if the data-category contains multiple options, it will find them
+            //Ex: data-category="Cat1, Cat2"
+            console.log("Filter on ", value);
+            $(".product-list").find("li").each(function (i) {
+                $(this).hide();
+            });
+            $(".product-list").find("li[data-brand*=" + value + "]").each(function (i) {
+                $(this).show();
+            });
+        }
+    }
+
+</script>
