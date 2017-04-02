@@ -1,66 +1,73 @@
-#brandidentity{
-	background-size: cover;
-	background-position: center center;
-	//margin-bottom: 30px;
-	text-align: center;
-	box-sizing: border-box;
-	min-height: 350px;
-	overflow: hidden;
-	position: relative;
-	z-index:0;
-	iframe{
-		height: 100%;
-		min-height: 100%;
-	}
-	input{
-		color: @text-color;
-	}
-	h1{
-		font-size: 25px;
-		margin: 70px 20px 0 20px;
-		z-index:2;
-		position: relative;
-		@media(min-width:@screen-sm){
-			margin: 200px 20px 0 20px;
-			font-size: 35px;
-		}
-		&:after{
-			content: '—';
-			font-weight: bold;
-			font-size: 30px;
-			line-height: 0;
-			display: block;
-			margin: 15px;
-		}
-	}
-	h3{
-		z-index:2;
-		position: relative;
-		font-size: 18px;
-		margin: 0 20px;
+#brandidentity {
+    background-size: cover;
+    background-position: center center;
+    //margin-bottom: 30px;
+    text-align: center;
+    box-sizing: border-box;
+    min-height: 350px;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
 
-		@media(min-width:@screen-sm){
-			font-size: 22px;
-		}
-	}
+    iframe {
+        height: 100%;
+        min-height: 100%;
+    }
 
-	@media(min-width:@screen-sm){
-		min-height: 500px;
-	}
+    input {
+        color: @text-color;
+    }
 
-	#brandidentity-overlay{
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		z-index:1;
-	}
+    h1 {
+        font-size: 25px;
+        margin: 70px 20px 0 20px;
+        z-index: 2;
+        position: relative;
 
-	#brandidentity-content{
-		@media(min-width:@screen-sm){
-			padding:0 80px;
-		}
-		@media(min-width:@screen-md){
-			padding: 0 200px;
-		}
-	}
+        @media (min-width: @screen-sm) {
+            margin: 200px 20px 0 20px;
+            font-size: 35px;
+        }
+
+        &:after {
+            content: '—';
+            font-weight: bold;
+            font-size: 30px;
+            line-height: 0;
+            display: block;
+            margin: 15px;
+        }
+    }
+
+    h3 {
+        z-index: 2;
+        position: relative;
+        font-size: 18px;
+        margin: 0 20px;
+
+        @media (min-width: @screen-sm) {
+            font-size: 22px;
+        }
+    }
+
+    @media (min-width: @screen-sm) {
+        min-height: 500px;
+    }
+
+    #brandidentity-overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 1;
+    }
+
+    #brandidentity-content {
+        @media (min-width: @screen-sm) {
+            padding: 0 80px;
+        }
+
+        @media (min-width: @screen-md) {
+            padding: 0 200px;
+        }
+    }
 }

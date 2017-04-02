@@ -1,112 +1,117 @@
-
 // Address form - step 2
 
-#form{
-	clear: both;
+#form {
+    clear: both;
 }
 
-.form-row{
-	float: left;
-	position: relative;
-	width: 100%;
+.form-row {
+    float: left;
+    position: relative;
+    width: 100%;
 }
 
 .form-row input[type=text],
 .form-row input[type=email],
-.form-row input[type=tel]{
-	width: 100%;
-	background: #fafafa;
-	border: 0 none;
-	height: 50px;
-	line-height: 50px;
-	margin-bottom: 20px;
-	padding: 15px 15px 5px 15px;
-	border:1px solid #ccc;
-}
-.form-row textarea{
-	width: 100%;
-	background: #fafafa;
-	border: 0 none;
-	margin-bottom: 20px;
-	padding: 15px 15px 5px 15px;
-	border:1px solid #ccc;
-}
-.form-row-zip{
-	width: 30% !important;
-	float: left;
-	position: relative;
-	margin-right: 5%;
-}
-.form-row-city{
-	width:65% !important;
-	position: relative;
-	float: left;
+.form-row input[type=tel] {
+    width: 100%;
+    background: #fafafa;
+    border: 0 none;
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 20px;
+    padding: 15px 15px 5px 15px;
+    border: 1px solid #ccc;
 }
 
-.form-row{
-	&.form-row-input{ 
-		label{
-			opacity: 0;
-			position: absolute;
-			left: 15px;
-			top: 7px;
-			font-size: 60%;
-			color: #ccc;
-
-			-webkit-transition: all 0.3s ease !important;
-		    -moz-transition: all 0.3s ease !important;
-		    transition: all 0.3s ease !important;
-		}
-	}
+.form-row textarea {
+    width: 100%;
+    background: #fafafa;
+    border: 0 none;
+    margin-bottom: 20px;
+    padding: 15px 15px 5px 15px;
+    border: 1px solid #ccc;
 }
 
-.form-row{
-	&.form-row-input{
-		label.show{
-			opacity: 1;
-			top:5px;
-		}
-	}
+.form-row-zip {
+    width: 30% !important;
+    float: left;
+    position: relative;
+    margin-right: 5%;
 }
 
-#form-checks{
-	.form-row{
-		margin: 5px 0;
-	}
+.form-row-city {
+    width: 65% !important;
+    position: relative;
+    float: left;
 }
-.label-active{
-	color: #333;
+
+.form-row {
+    &.form-row-input {
+        label {
+            opacity: 0;
+            position: absolute;
+            left: 15px;
+            top: 7px;
+            font-size: 60%;
+            color: #ccc;
+
+            -webkit-transition: all 0.3s ease !important;
+            -moz-transition: all 0.3s ease !important;
+            transition: all 0.3s ease !important;
+        }
+    }
+}
+
+.form-row {
+    &.form-row-input {
+        label.show {
+            opacity: 1;
+            top: 5px;
+        }
+    }
+}
+
+#form-checks {
+    .form-row {
+        margin: 5px 0;
+    }
+}
+
+.label-active {
+    color: #333;
 }
 
 #payment-address,
-#shipping-address{
-	clear: both;
-	width: 100%;
-	float: left;
-}
-#shipping-address{
-	margin-top: 30px;
+#shipping-address {
+    clear: both;
+    width: 100%;
+    float: left;
 }
 
-
+#shipping-address {
+    margin-top: 30px;
+}
 
 ::-webkit-input-placeholder,
 :-moz-placeholder,
 ::-moz-placeholder,
-:-ms-input-placeholder{ 
-    color:    #555;
+:-ms-input-placeholder {
+    color: #555;
 }
 
-.focus:focus::-webkit-input-placeholder{
-    color: transparent!important;
+.focus:focus::-webkit-input-placeholder {
+    color: transparent !important;
 }
-.focus:focus::-moz-placeholder{
-    color: transparent!important;
+
+.focus:focus::-moz-placeholder {
+    color: transparent !important;
 }
-.focus:focus:-moz-placeholder{
-    color: transparent!important;
+
+.focus:focus:-moz-placeholder {
+    color: transparent !important;
 }
-#new-country-link{
-	margin-bottom: 20px;
-	display: block;
+
+#new-country-link {
+    margin-bottom: 20px;
+    display: block;
 }

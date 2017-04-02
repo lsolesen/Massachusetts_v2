@@ -30,4 +30,4 @@ install:
 script:
 
   - gulp less
-
+  - gulp less-hint
