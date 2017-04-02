@@ -27,8 +27,6 @@
 
     "emptyRule": false,
 
-    "attributeQuotes": false,
-
     "hexNotation": false,
 
     "borderZero": false
