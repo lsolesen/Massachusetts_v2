@@ -21,8 +21,6 @@
 
     "qualifyingElement": false,
 
-    "duplicateProperty": false,
-
     "stringQuotes": false,
 
     "spaceAroundComma": false,
@@ -33,7 +31,5 @@
 
     "hexNotation": false,
 
-    "borderZero": false,
-
-    "trailingSemicolon": false
+    "borderZero": false
 }
