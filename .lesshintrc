@@ -1,0 +1,33 @@
+{
+    "fileExtensions": [".less"],
+
+    "excludedFiles": ["./__dev/bootstrap/*", "./__dev/owl/*"],
+
+    "importantRule": false,
+
+    "zeroUnit": false,
+
+    "idSelector": false,
+
+    "propertyOrdering": false,
+
+    "hexLength": false,
+
+    "decimalZero": false,
+
+    "newlineAfterBlock": false,
+
+    "singleLinePerSelector": false,
+
+    "qualifyingElement": false,
+
+    "stringQuotes": false,
+
+    "spaceAroundComma": false,
+
+    "emptyRule": false,
+
+    "hexNotation": false,
+
+    "borderZero": false
+}

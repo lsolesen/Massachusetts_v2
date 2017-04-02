@@ -1,176 +1,186 @@
-#basket-content-list{
-	margin:0 0 30px 0;
-	padding: 0;
-	list-style-type: none;
+#basket-content-list {
+    margin: 0 0 30px 0;
+    padding: 0;
+    list-style-type: none;
 
-	#basket-content-listhead{
-		text-transform: uppercase;
-		font-size: 100%;
-		padding: 15px 0;
-		border-bottom: 1px solid #ddd;
-		border-top: 1px solid #ddd;
-		color: #666;
-	}
+    #basket-content-listhead {
+        text-transform: uppercase;
+        font-size: 100%;
+        padding: 15px 0;
+        border-bottom: 1px solid #ddd;
+        border-top: 1px solid #ddd;
+        color: #666;
+    }
 
-	.basket-content-listitem{
-		padding: 15px 0;
-		border-bottom: 1px solid #eee;
-	}
-	.basket-content-listitem-attr{
-		font-style: italic;
-		font-weight: 80%;
-	}
-	.basket-content-listitem > a, .basket-content-listitem > span{
-		display: block;
-		color: #333;
-	}
-	.basket-content-listitem:after{
-		content: '';
-		display: block;
-		clear: both;
-	}
+    .basket-content-listitem {
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+    }
 
-	.basket-content-listitem .left, .basket-content-listitem .right{
-		padding: 0;
-	}
-	.basket-content-listitem-amount{
-		float: left;
-		margin-right: 10px;
-	}
+    .basket-content-listitem-attr {
+        font-style: italic;
+        font-weight: 80%;
+    }
+
+    .basket-content-listitem > a, .basket-content-listitem > span {
+        display: block;
+        color: #333;
+    }
+
+    .basket-content-listitem:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+    .basket-content-listitem .left, .basket-content-listitem .right {
+        padding: 0;
+    }
+
+    .basket-content-listitem-amount {
+        float: left;
+        margin-right: 10px;
+    }
 }
 
-
-.left{
-	text-align: left;
+.left {
+    text-align: left;
 }
 
-.right{
-	text-align: right;
+.right {
+    text-align: right;
 }
 
-#basket-summary{
-	text-align: right;
-	margin-bottom: 30px;
+#basket-summary {
+    text-align: right;
+    margin-bottom: 30px;
 }
+
 #basket-subtotal,
 #basket-shipping,
 #basket-vat,
-#basket-total{
-	display: block;
+#basket-total {
+    display: block;
 }
-#basket-subtotal{
 
-}
-#basket-shipping{
-
-}
-#basket-vat{
+#basket-subtotal {
 
 }
 
-
-.basketpage{
+#basket-shipping {
 
 }
-#basket-persuasion{
-	@media (max-width: @screen-sm){
-		display: none;
-	}
-	width: 60%;
-	float: right;
-	padding-top: 30px;
-	ul{
-		list-style-type: none;
-		margin:0;
-		padding: 0;
-		text-align: right;
 
-		li{
-			display: inline-block;
-			margin-left:20px;
-			&:before{
-				font-family: 'Glyphicons Halflings';
-				content: "\e013";
-				float: left;
-				margin-right: 5px;
-			}
-			&:after{
-				content: '';
-				clear: both;
-				display: block;
-			}
-		}
-	}
+#basket-vat {
+
 }
 
+.basketpage {
 
-#basket-total{
+}
+
+#basket-persuasion {
+    @media (max-width: @screen-sm) {
+        display: none;
+    }
+
+    width: 60%;
+    float: right;
+    padding-top: 30px;
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+
+        li {
+            display: inline-block;
+            margin-left: 20px;
+
+            &:before {
+                font-family: 'Glyphicons Halflings';
+                content: "\e013";
+                float: left;
+                margin-right: 5px;
+            }
+
+            &:after {
+                content: '';
+                clear: both;
+                display: block;
+            }
+        }
+    }
+}
+
+#basket-total {
     font-size: 150%;
     border-bottom: 1px solid #ddd;
-	border-top: 1px solid #ddd;
-	padding: 10px 0;
-	margin: 30px 0 10px 0;
-	span{
-		float: right;
-	}
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
+    margin: 30px 0 10px 0;
+
+    span {
+        float: right;
+    }
 }
 
-#basket-content-shipping{
-	span.country-selecter{
-		display: inline-block;
-		margin: 0 5px;
-	}
+#basket-content-shipping {
+    span.country-selecter {
+        display: inline-block;
+        margin: 0 5px;
+    }
 }
 
+#basket-voucher {
 
-#basket-voucher{
+    margin: 0 0 30px 0;
 
-	margin: 0 0 30px 0;
+    > .input-group {
+        padding: 0;
+    }
 
-	> .input-group {
-		padding: 0;
-	}
+    input {
+        width: 100%;
+        background: #fafafa;
+        border: 0 none;
+        height: 40px;
+        line-height: 40px;
+        padding: 0px 15px;
+    }
 
-	input{
-		width: 100%;
-		background: #fafafa;
-		border: 0 none;
-		height: 40px;
-		line-height: 40px;
-		padding: 0px 15px;
-	}
+    &::after {
+        content: '';
+        clear: both;
+        display: block;
+    }
 
-	&::after{
-		content: '';
-		clear: both;
-		display: block;
-	}
-	button{
-		position: absolute;
-		height: 34px;
-		line-height: 34px;
-		padding: 0 10px;
-		right: 3px;
-		margin: 3px 5px 0 0;
-		top: 0;
-	}
+    button {
+        position: absolute;
+        height: 34px;
+        line-height: 34px;
+        padding: 0 10px;
+        right: 3px;
+        margin: 3px 5px 0 0;
+        top: 0;
+    }
 }
 
-#basket-voucher-line{
-	font-size: 140%;
-	text-align: right;
-	color: #519310;
+#basket-voucher-line {
+    font-size: 140%;
+    text-align: right;
+    color: #519310;
 }
 
+.removefrombasket {
+    opacity: .6;
+    background: transparent;
+    border: 0 none;
 
-.removefrombasket{
-	opacity: .6;
-	background: transparent;
-	border: 0 none;
-
-	&:hover{
-		opacity: 1;
-	}
+    &:hover {
+        opacity: 1;
+    }
 }
 
 #basket-shipping-method {
@@ -179,101 +189,111 @@
     padding: 0 0 30px;
 }
 
-input.voucher-active{
-	border-color: #519310;
-	background: #c6eda3;
-}
-button.voucher-active{
-	color: #519310;
-	border-color: #519310;
+input.voucher-active {
+    border-color: #519310;
+    background: #c6eda3;
 }
 
-#basket-trust{
-	margin-top: 20px;
+button.voucher-active {
+    color: #519310;
+    border-color: #519310;
 }
 
-
+#basket-trust {
+    margin-top: 20px;
+}
 
 #basket {
-	overflow-y: scroll;
-	#basket-content-list{
-		#basket-content-listhead{
-			border-bottom: 1px solid #ddd;
-			border-top: 1px solid #ddd;
-			color: #666;
-		}
-		.basket-content-listitem{
-			border-bottom: 1px solid #ddd;
+    overflow-y: scroll;
 
-			a{
-				color: #333;
-			}
-		}
-	}
-	#basket-total{
-	    border-bottom: 1px solid #ddd;
-		border-top: 1px solid #ddd;
-	}
+    #basket-content-list {
+        #basket-content-listhead {
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            color: #666;
+        }
+
+        .basket-content-listitem {
+            border-bottom: 1px solid #ddd;
+
+            a {
+                color: #333;
+            }
+        }
+    }
+
+    #basket-total {
+        border-bottom: 1px solid #ddd;
+        border-top: 1px solid #ddd;
+    }
 }
 
+#basket-shipping-shop-select {
+    width: 100%;
+    margin-bottom: 30px;
 
-#basket-shipping-shop-select{
-	width: 100%;
-	margin-bottom: 30px;
-	.line{
-		display: block;
-		&:after{
-			content: '';
-			clear: both;
-			display: block;
-		}
-		input{
-			float: left;
-			margin-right: 10px;
-		}
-		span.shipping-name{
-			float: left;
-		}
-		span.shipping-price{
-			font-size: 13px;
-			clear: both;
-			display: block;
-			@media(min-width:@screen-sm){
-				float: right;
-				display: inline-block;
-				font-size: 16px;
-				clear: none;
-			}
-		}
-	}
-	#basket-shipping-shop-select-pos{
-		width: 100%;
-		float: right;
-		@media(min-width:@screen-sm){
-			width: 340px;
-		}
-	}
-	&:after{
-		content: '';
-		display: block;
-		clear: both;
-	}
-	@media(max-width:@screen-sm){
-		&:before{
-			content: 'Vælg levering';
-			font-size: 130%;
-			text-align: center;
-			width: 100%;
-			margin-bottom: 20px;
-		}
-	}
+    .line {
+        display: block;
+
+        &:after {
+            content: '';
+            clear: both;
+            display: block;
+        }
+
+        input {
+            float: left;
+            margin-right: 10px;
+        }
+
+        span.shipping-name {
+            float: left;
+        }
+
+        span.shipping-price {
+            font-size: 13px;
+            clear: both;
+            display: block;
+
+            @media (min-width: @screen-sm) {
+                float: right;
+                display: inline-block;
+                font-size: 16px;
+                clear: none;
+            }
+        }
+    }
+
+    #basket-shipping-shop-select-pos {
+        width: 100%;
+        float: right;
+        @media (min-width: @screen-sm) {
+            width: 340px;
+        }
+    }
+
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+    @media (max-width: @screen-sm) {
+        &:before {
+            content: 'Vælg levering';
+            font-size: 130%;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    }
 }
 
-#outofstock-message{
-	display: block;
-	background: #f5f4bc;
-	padding: 20px;
-	clear: both;
-	margin-bottom: 30px;
-	border:1px solid #e0df8e;
+#outofstock-message {
+    display: block;
+    background: #f5f4bc;
+    padding: 20px;
+    clear: both;
+    margin-bottom: 30px;
+    border: 1px solid #e0df8e;
 }

@@ -1,131 +1,146 @@
 /* C H E C K  O U T  F L O W
 -------------------------------*/
 
-#site.checkout{
-    #sitehead{
+#site.checkout {
+    #sitehead {
         top: 0 !important;
         position: absolute !important;
     }
 }
-.thanksicn{
+
+.thanksicn {
     font-size: 85px;
 }
-#checkout-content{
+
+#checkout-content {
     padding: 30px 0;
 
-    &.thanks{
+    &.thanks {
         text-align: center;
     }
 }
 
-#checkout-next-btn{
+#checkout-next-btn {
     width: 100%;
-    @media(min-width:@screen-sm){
+    @media (min-width: @screen-sm) {
         width: auto;
         float: right;
     }
 
 }
 
-.checkout-pages{
-    box-shadow: 0 3px 10px rgba(0,0,0,.1);
-    padding:20px;
+.checkout-pages {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .1);
+    padding: 20px;
     margin-bottom: 50px;
-    @media(min-width:@screen-md){
+
+    @media (min-width: @screen-md) {
         margin: 50px;
         padding: 50px;
     }
-    textarea{
+
+    textarea {
         width: 80%;
         max-width: 80%;
         height: 150px;
-    }   
+    }
 
-    .rating { 
-      border: none;
-      float: left;
-  }
+    .rating {
+        border: none;
+        float: left;
+    }
 
-  .rating > input { display: none; } 
-  .rating > label:before { 
-      margin: 5px;
-      font-size: 1.25em;
-      font-family: 'Glyphicons Halflings';
-      display: inline-block;
-      content: "\e006";
-  }
-  .rating > label { 
-    color: #B2B2B2;    
-    float: right; 
-}
+    .rating > input {
+        display: none;
+    }
 
-/***** CSS Magic to Highlight Stars on Hover *****/
+    .rating > label:before {
+        margin: 5px;
+        font-size: 1.25em;
+        font-family: 'Glyphicons Halflings';
+        display: inline-block;
+        content: "\e006";
+    }
 
-.rating > input:checked ~ label, /* show gold star when clicked */
-.rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { color: #333;  } /* hover previous stars in list */
+    .rating > label {
+        color: #B2B2B2;
+        float: right;
+    }
 
-.rating > input:checked + label:hover, /* hover current star when changing rating */
-.rating > input:checked ~ label:hover,
-.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-.rating > input:checked ~ label:hover ~ label { color: #555;  } 
+    /***** CSS Magic to Highlight Stars on Hover *****/
 
+    .rating > input:checked ~ label, /* show gold star when clicked */
+    .rating:not(:checked) > label:hover, /* hover current star */
+    .rating:not(:checked) > label:hover ~ label {
+        color: #333;
+    }
+    /* hover previous stars in list */
 
-   //  .rating > i {
-   //      font-family: 'Glyphicons Halflings';
-   //      font-style: normal;
-   //      line-height: 1;
-   //      vertical-align: middle;
-   //      &:before{
-   //          content: '\e006';
-   //          opacity: .4;
-   //      }
-   //  }
-   //  .rating > i:hover:before,
-   //  .rating > i:hover ~ i:before {
-   //     opacity: 1;
-   // }
-//  .rating-area{
+    .rating > input:checked + label:hover, /* hover current star when changing rating */
+    .rating > input:checked ~ label:hover,
+    .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+    .rating > input:checked ~ label:hover ~ label {
+        color: #555;
+    }
 
-//     .rate{
-//         font-family: 'Glyphicons Halflings';
-//         font-style: normal;
-//         line-height: 1;
-//         vertical-align: middle;
-//         &:before{
-//             content: '\e006';
-//             opacity: .4;
-//         }
-//         &:hover{             
-//             &:before{
-//              opacity: 1;
-//          }
-//      }
-//  }
-// }
+    //  .rating > i {
+    //      font-family: 'Glyphicons Halflings';
+    //      font-style: normal;
+    //      line-height: 1;
+    //      vertical-align: middle;
+    //      &:before{
+    //          content: '\e006';
+    //          opacity: .4;
+    //      }
+    //  }
+    //  .rating > i:hover:before,
+    //  .rating > i:hover ~ i:before {
+    //     opacity: 1;
+    // }
+    //  .rating-area{
+
+    //     .rate{
+    //         font-family: 'Glyphicons Halflings';
+    //         font-style: normal;
+    //         line-height: 1;
+    //         vertical-align: middle;
+    //         &:before{
+    //             content: '\e006';
+    //             opacity: .4;
+    //         }
+    //         &:hover{
+    //             &:before{
+    //              opacity: 1;
+    //          }
+    //      }
+    //  }
+    // }
 }
 
 // Approve page
 #approve-logo,
-#order-logo{
+#order-logo {
     text-align: center;
 
 }
 
 .approve-section,
-.order-section{
+.order-section {
     clear: both;
-    border-top: 1px solid rgba(0,0,0,.1);
+    border-top: 1px solid rgba(0, 0, 0, .1);
     margin-top: 30px;
     padding-top: 30px;
-    &.about-you{
+
+    &.about-you {
         border-top: 0;
         margin-top: 0;
     }
-    &.cta{
+
+    &.cta {
         text-align: center;
     }
-    h1{
+
+    h1 {
         margin: 0;
     }
 }
