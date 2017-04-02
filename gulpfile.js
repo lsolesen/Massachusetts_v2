@@ -21,7 +21,7 @@ gulp.task('less', function () {
         .pipe(gulp.dest('./css'))
 });
 
-gulp.task('less-lint', function() {
+gulp.task('less-hint', function() {
     return gulp.src('./__dev/less/sections/*.less')
         .pipe(lesshint({
             // Options
