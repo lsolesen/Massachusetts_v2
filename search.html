@@ -1,44 +1,53 @@
-<div id="site" class="">
+<{assign var="redirects_array" value=$settings.Søgeindstillinger.Søgninger_til_videresending|escape}>
+<{assign var="redirects" value=", "|explode:$redirects_array}>
+<{assign var="search" value=$get.search|lower}>
 
-        <{include file="_include_header.html"}>
+<{if in_array($search, $redirects)}>
+<script type="text/javascript">
+    window.location = "/<{$search|escape}>";
+</script>
+<{/if}>
 
-        <section id="sitecontent">
+<div id="site" class="search">
 
-            <section id="product-list-head">
-                <div class="container"><div class="row"><div class="col-xs-12">
-                    <{if $get.search}>
-                        <h1>Søgeresultat for "<{$get.search|escape}>"</h1>
-                    <{else}>
-                        <h1>Søgning</h1>
-                    <{/if}>
-                    <p>Resultater: <{$count}></p>
-                </div></div></div>
-            </section>
+    <{include file="_include_header.html"}>
 
-            <section id="products">
-                <div class="container"><div class="row">
-                    <ul class="product-list" itemscope itemtype="http://schema.org/ItemList">
+    <section id="sitecontent">
 
-                        <{section name="i" loop=$products}>
-                            <{include file="_include_inner-product.html" product=$products[i]}>
-                        <{/section}>
+        <section id="product-list-head">
+            <div class="container"><div class="row"><div class="col-xs-12">
+                <{if $get.search}>
+                <h1>Søgeresultat for "<{$get.search|escape}>"</h1>
+                <{else}>
+                <h1>Søgning</h1>
+                <{/if}>
+                <p>Resultater: <{$count}></p>
+            </div></div></div>
+        </section>
 
-                    </ul>
+        <section id="products">
+            <div class="container"><div class="row">
+                <ul class="product-list" itemscope itemtype="http://schema.org/ItemList">
 
+                    <{section name="i" loop=$products}>
+                        <{include file="_include_inner-product.html" product=$products[i]}>
+                    <{/section}>
 
-                </div></div><!--/.container .row-->
-            </section>
-
-
-        </section><!--/#sitecontent-->
-
-        <{include file="_include_footer.html"}>
+                </ul>
+                
+            </div></div><!--/.container .row-->
+        </section>
 
 
-        <button id="totop">Til toppen</button>
+    </section><!--/#sitecontent-->
 
-        <{include file="_include_cookiepolicy.html"}>
+    <{include file="_include_footer.html"}>
 
-    </div><!--/#site-->
+    <button id="totop">Til toppen</button>
 
-    <{include file="_include_side-basket.html"}>
+
+    <{include file="_include_cookiepolicy.html"}>
+
+</div><!--/#site-->
+
+<{include file="_include_side-basket.html"}>
