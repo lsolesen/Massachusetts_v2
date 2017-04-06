@@ -1,10 +1,22 @@
-<{assign var="images" value=$page->getImages()}>
-
-<{strip}><{capture name="title"}><{$page->getHeadline()}><{/capture}>
+<{strip}>
+<{capture name="title"}><{$page->getHeadline()}><{/capture}>
+<{assign var="cachePage" value=$page->getPageId()}>
+<{assign var="cachePageData" value=$page->getPageId()|cat:'_data'}>
+<{if $settings.Caching.LevetidSide}>
+    <{assign var="ttl" value=$settings.Caching.LevetidSide}>
+<{else}>
+    <{assign var="ttl" value="3600"}>
+<{/if}>
 
     <div id="site" class="staticpage">
         <{include file="_include_header.html"}>
+        <{get_cache name=$cachePage ttl=$ttl assign="cachePageData"}>
+        <{if $cachePageData}>
+            <{$cachePageData}>
+        <{else}>
+        <{cache name=$cachePage}>
         <section id="sitecontent">
+            <{assign var="images" value=$page->getImages()}>
             <{if $images|@count > 0}>
             <section id="brandidentity" style="background-image: url(<{$images[0]->getSrc(1000, 1000, 'fit')}>);">
                 <div id="brandidentity-content">
@@ -60,6 +72,8 @@
             </section>
 
         </section><!--/#sitecontent-->
+        <{/cache}>
+        <{/if}>
 
         <{include file="_include_footer.html"}>
 

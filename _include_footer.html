@@ -1,4 +1,17 @@
-<{strip}><footer id="sitefoot">
+<{strip}>
+<{if $settings.Caching.LevetidFooter}>
+    <{assign var="ttl" value=$settings.Caching.LevetidFooter}>
+<{else}>
+    <{assign var="ttl" value="3600"}>
+<{/if}>
+<{get_cache name="shoporama_footer" ttl=$ttl assign="shoporama_footer_data"}>
+
+<{if $shoporama_footer_data}>
+    <{$shoporama_footer_data}>
+<{else}>
+    <{cache name="shoporama_footer"}>
+
+<footer id="sitefoot">
     <div id="sitefoot-head">
         <div class="container"><div class="row"><div class="col-xs-12">
             <{if $settings.Betalingskort.Dankort == "ja"}><img src="<{$theme_url}>/img/epay-logo-pack/dankort_22.gif" alt="Dankort"><{/if}>
@@ -99,5 +112,6 @@
     </div>
     </div></div><!--/.row /.container-->
 </footer><!--/#sitefoot-->
-
+<{/cache}>
+<{/if}>
 <{/strip}>

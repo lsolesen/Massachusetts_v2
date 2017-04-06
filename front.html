@@ -1,6 +1,21 @@
 <{strip}>
-<div id="site" class="front">
+<div id="site" class="frontpage">
     <{include file="_include_header.html"}>
+
+    <{if $settings.Caching.LevetidForside}>
+        <{assign var="ttl" value=$settings.Caching.LevetidForside}>
+    <{else}>
+        <{assign var="ttl" value="3600"}>
+    <{/if}>
+    <{get_cache name="shoporama_frontpage" ttl=$ttl assign="shoporama_frontpage_data"}>
+
+    <{if $shoporama_frontpage_data}>
+
+        <{$shoporama_frontpage_data}>
+
+    <{else}>
+
+    <{cache name="shoporama_frontpage"}>
 
     <div id="sitecontent">
 
@@ -96,6 +111,9 @@
         <{/if}>
 
     </div><!--/#sitecontent-->
+
+    <{/cache}>
+    <{/if}>
 
     <{include file="_include_footer.html"}>
 
