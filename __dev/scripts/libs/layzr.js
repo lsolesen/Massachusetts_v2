@@ -1,3 +1,18 @@
+/*!
+ * Layzr.js 1.4.0 - A small, fast, modern, and dependency-free library for lazy loading.
+ * Copyright (c) 2015 Michael Cavalea - http://callmecavs.github.io/layzr.js/
+ * License: MIT
+ */
+
+(function(root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define([], factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory();
+  } else {
+    root.Layzr = factory();
+  }
+}(this, function() {
 'use strict';
 
 // CONSTRUCTOR
@@ -162,3 +177,6 @@ Layzr.prototype.update = function() {
   // allow for more animation frames
   this._ticking = false;
 };
+
+return Layzr;
+}));
