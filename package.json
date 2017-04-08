@@ -23,7 +23,8 @@
     "gulp-concat": "^2.6.1",
     "gulp-jslint": "^1.0.10",
     "gulp-lesshint": "^3.0.0",
-    "gulp-uglify": "^2.1.2"
+    "gulp-uglify": "^2.1.2",
+    "gulp-jslint": "^1.0.10"
   },
   "scripts": {
     "setup": "npm install",
