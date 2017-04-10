@@ -1,4 +1,5 @@
-massachusetts.cookiepolicy = massachusetts.cookiepolicy || function () {
+var massachusetts = massachusetts || {};
+massachusetts.cookiepolicy = (function () {
 
     function init() {
         EUCookieLaw();
@@ -8,7 +9,7 @@ massachusetts.cookiepolicy = massachusetts.cookiepolicy || function () {
     function setCookie(key, value) {
         var expires = new Date();
         expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
-            document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
+        document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
     }
 
     function getCookie(key) {
@@ -21,7 +22,6 @@ massachusetts.cookiepolicy = massachusetts.cookiepolicy || function () {
         expires.setTime(expires.getTime() + (0));
         document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
     }
-
 
     function EUCookieLaw(){
         if (!getCookie('acceptcookie')){
@@ -41,4 +41,4 @@ massachusetts.cookiepolicy = massachusetts.cookiepolicy || function () {
         init:init
     };
 
-}();
+}());

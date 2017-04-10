@@ -16,19 +16,19 @@
   },
   "devDependencies": {
     "gulp-cli": "~1.2.2",
+    "gulp-concat": "^2.6.1",
     "gulp-cssmin": "~0.1.7",
+    "gulp-jslint": "^1.0.10",
     "gulp-less": "~3.3.0",
+    "gulp-lesshint": "^3.0.0",
     "gulp-plumber": "~1.1.0",
     "gulp-rename": "~1.2.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-jslint": "^1.0.10",
-    "gulp-lesshint": "^3.0.0",
     "gulp-uglify": "^2.1.2",
-    "gulp-jslint": "^1.0.10"
+    "mocha": "^3.2.0"
   },
   "scripts": {
     "setup": "npm install",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "copy-js": "cp \"./node_modules/jquery-autocompleter/jquery.autocompleter.min.js\" ./__dev/scripts/libs/ -a; cp \"./node_modules/bootstrap/js/.\" ./__dev/scripts/bootstrap/ -a; cp \"./node_modules/fastclick/lib/fastclick.js\" ./__dev/scripts/libs/ -a; cp \"./node_modules/layzr.js/dist/layzr.js\" ./__dev/scripts/libs/ -a; cp \"./node_modules/owlcarousel-pre/owl-carousel/owl.carousel.min.js\" ./__dev/scripts/libs/owl/ -a; cp \"./node_modules/jquery-scroll-lock/jquery-scrollLock.min.js\" ./__dev/scripts/libs/ -a;",
     "copy-less": "cp \"./node_modules/bootstrap/less/.\" ./__dev/less/bootstrap/ -a; cp \"./node_modules/bootstrap/less/.\" ./__dev/less/bootstrap/ -a;",
     "copy-owl-less": "cp \"./node_modules/owlcarousel-pre/owl-carousel/owl.carousel.css\" ./__dev/less/owl/owl.carousel.less; cp \"./node_modules/owlcarousel-pre/owl-carousel/owl.theme.css\" ./__dev/less/owl/owl.theme.less; cp \"./node_modules/owlcarousel-pre/owl-carousel/owl.transitions.css\" ./__dev/less/owl/owl.transitions.less; cp \"./node_modules/owlcarousel-pre/owl-carousel/grabbing.png\" ./img/ -a; "
