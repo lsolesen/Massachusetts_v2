@@ -20,33 +20,21 @@
 <{assign var="splat" value=$product->getMetaValue('splat') }>
 <{assign var="images" value=$product->getImages()}>
 <{assign var="supplier" value=$product->getSupplier()}>
-<{assign var="profile" value=$product->getProfile()}>
-<{assign var="attr" value=$profile->getAttributeList()}>
+<{assign var="attr_stock" value=$product->getInStockVariants()}>
 
 <li rel="product" data-id="<{$product->getProductId()}>"<{if $supplier}> data-brand="<{$supplier->getName()}>" <{/if}> class="col-xs-12 col-sm-4 col-md-3 product-teaser <{$product->getCategoryNames("filter-"," ")}> <{if $supplier}> filter-<{$supplier->getName()|lower|replace:' ':'_'|replace:'.':'_'}><{/if}>" itemscope itemtype="http://schema.org/Product">
     <div class="product-teaser-inner">
         <a href="<{$product->getRemoteUrl()|escape}>" title="<{$product->getName()|escape}>">
-            <{if $attr}>
             <div class="sizes">
-                <{if $product->getIsInStock() == true}>
+                <{if $attr_stock}>
                 <span>Varianter på lager:</span>
                 <ul>
-                    <{section name="j" loop=$attr}>
-                        <{if $attr[j]->getIsVariant() && $attr[j]->getDataType() == "valuelist"}>
-                            <{assign var="values" value=$attr[j]->getValues()}>
-                            <{assign var="c" value=0}>
-                            <{section name="k" loop=$values}>
-
-                                <{if $product->getInStock($attr[j]->getAttributeId(), $values[k]->getAttributeValueId()) > 0}>
-                                    <{assign var="c" value=$c+1}>
-                                    <{if $c < 10}>
-                                        <li><{$values[k]->getVal()|escape}></li>
-                                    <{elseif $c == 10}>
-                                        <li>mere...</li>
-                                    <{/if}>
-                                <{/if}>
-
-                            <{/section}>
+                    <{assign var="c" value=0}>
+                    <{section name="a" loop=$attr_stock}>
+                        <{if $c < 10}>
+                        <li><{$attr_stock[a].name}></li>
+                        <{elseif $c == 10}>
+                        <li>mere...</li>
                         <{/if}>
                     <{/section}>
                 </ul>
@@ -57,7 +45,6 @@
                 </ul>
                 <{/if}>
             </div>
-            <{/if}>
             <{section name="j" loop=$images start=0 max=1}>
                 <img src="<{$theme_url}>/img/spinner.gif" data-layzr="<{$images[j]->getSrc(240,240, 'box')}>" data-layzr-retina="<{$images[j]->getSrc(500,500, 'box')}>" class="product-image" itemprop="image" content="<{$images[j]->getSrc(400,400, 'box')}>" alt="<{$images[j]->getDescription()|escape}>" />
             <{/section}>
@@ -95,6 +82,8 @@
 
 
         <{if $settings.Produktlister.Laegikurvfraliste == 'ja'}>
+            <{assign var="profile" value=$product->getProfile()}>
+            <{assign var="attr" value=$profile->getAttributeList()}>
             <{if $product->getIsInStock()}>
                 <form action="" method="post" class="putinbasketform">
                     <input type="hidden" name="product_id" value="<{$product->getProductId()}>"/>
