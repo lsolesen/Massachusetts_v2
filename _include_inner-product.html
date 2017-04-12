@@ -22,7 +22,41 @@
 <{assign var="profile" value=$product->getProfile()}>
 <{assign var="attr" value=$profile->getAttributeList()}>
 
-<li rel="product" data-id="<{$product->getProductId()}>"<{if $supplier}> data-brand="<{$supplier->getName()}>" <{/if}> class="col-xs-12 col-sm-4 col-md-3 product-teaser <{$product->getCategoryNames("filter-"," ")}> <{if $supplier}> filter-<{$supplier->getName()|lower|replace:' ':'_'|replace:'.':'_'}><{/if}>" itemscope itemtype="http://schema.org/Product">
+
+<{assign var="attr" value=$product->getAttributes()}>
+<{assign var="attributes" value=""}>
+<{assign var="variant" value=""}>
+<{section name="j" loop=$attr}>
+    <{assign var="values" value=$attr[j]->getValues()}>
+    <{if $attr[j]->getIsVariant() && $attr[j]->getDataType() == "valuelist"}>
+        <{section name="k" loop=$values}>
+
+            <{if $product->getInStock($attr[j]->getAttributeId(), $values[k]->getAttributeValueId()) > 0}>
+                <{assign var="temp" value=$values[k]->getVal()|escape}>
+                <{assign var="variant" value="$variant $temp"}>
+            <{/if}>
+
+        <{/section}>
+    <{else}>
+
+        <{* Jeg kan ikke få attr til at returnere noget *}>
+        <{* Hvis den gjorde det, vil jeg tro, at jeg kunne få den til kun at hente attributter på produktet *}>
+        <{* og hvis den gjorde - hvordan kunne jeg så få den ind i en variabel? *}>
+        <{attr name=$attr[j]->getName()}>
+        <{$attr[j]->getVal()}>
+
+        <{* $attributes ender med at få alle de mulige attributter - ikke kun dem på produktet *}>
+        <{section name="l" loop=$values}>
+
+            <{assign var="temp" value=$values[l]->getVal()|escape}>
+            <{assign var="attributes" value="$attributes $temp"}>
+
+        <{/section}>
+    <{/if}>
+<{/section}>
+
+
+<li rel="product" data-attributes="<{$attributes}>" data-variant="<{$variant}>" data-id="<{$product->getProductId()}>"<{if $supplier}> data-brand="<{$supplier->getName()}>" <{/if}> class="col-xs-12 col-sm-4 col-md-3 product-teaser <{$product->getCategoryNames("filter-"," ")}> <{if $supplier}> filter-<{$supplier->getName()|lower|replace:' ':'_'|replace:'.':'_'}><{/if}>" itemscope itemtype="http://schema.org/Product">
     <div class="product-teaser-inner">
         <a href="<{$product->getRemoteUrl()|escape}>" title="<{$product->getName()|escape}>">
             <{if $attr}>
