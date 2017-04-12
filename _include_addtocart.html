@@ -1,6 +1,4 @@
 <{strip}>
-<{assign var="stock" value=$product->getInStockVariants()}>
-
 <{if $product->getIsInStock() || $product->hasBundleProducts()}>
     <form action="" method="post" id="putinbasketform">
         <input type="hidden" name="product_id" value="<{$product->getProductId()}>"/>
@@ -18,9 +16,10 @@
                         <label for="attr_<{$b_product->getProductId()}>"><{$b_product->getName()|escape}></label><br/>
 
                         <{if $b_stock}>
-                            <select id="attr_<{$b_product->getProductId()}>" name="b_attributes[<{$b_product->getProductId()}>][<{$stock[0].attribute_id}>]" required="required">
+                            <select id="attr_<{$b_product->getProductId()}>" name="b_attributes[<{$b_product->getProductId()}>][<{$b_stock[0].attribute_id}>]" required="required">
+                                <option value="" disabled="disabled" selected>Vælg variant</option>
                                 <{section name="j" loop=$b_stock}>
-                                <option value="<{$b_stock[i].attribute_value_id}>"><{$b_stock[j].name}> (<{$b_stock[j].cnt}> på lager)</option>
+                                    <option value="<{$b_stock[i].attribute_value_id}>"><{$b_stock[j].name}> (<{$b_stock[j].cnt}> på lager)</option>
                                 <{/section}>
                             </select>
                         <{/if}>
@@ -29,14 +28,37 @@
                 <{/if}>
             <{elseif $product->hasVariant()}>
                 <div class="product-variant-selecter">
-                    <{if $stock}>
-                    <select name="attributes[<{$stock[0].attribute_id}>]" id="a<{$stock[0].attribute_id}>" class="attribute required variant" required="required">
-                        <option value="" disabled="disabled" selected>Vælg variant</option>
-                        <{section name="j" loop=$stock}>
-                        <option value="<{$stock[j].attribute_value_id}>"><{$stock[j].name}> (<{$stock[j].cnt}> på lager)</option>
-                        <{/section}>
-                    </select>
-                    <{/if}>
+                    <{assign var="profile" value=$product->getProfile()}>
+                    <{assign var="attr" value=$profile->getAttributeList()}>
+                    <{assign var="stock" value=$product->getInStockVariants()}>
+                    <{section name="j" loop=$attr}>
+                        <div>
+                            <{if $attr[j]->getIsVariant()}>
+                                <{if $attr[j]->getDataType() == "valuelist"}>
+                                    <{if $stock}>
+                                    <select name="attributes[<{$stock[0].attribute_id}>]" id="a<{$stock[0].attribute_id}>" class="attribute required variant" required="required">
+                                        <option value="" disabled="disabled" selected>Vælg variant</option>
+                                        <{section name="j" loop=$stock}>
+                                            <{assign var="attribute_price" value=$product->getAttributePrice($stock[0].attribute_value_id)}>
+                                            <option value="<{$stock[j].attribute_value_id}>" data-stockamount="<{$stock[j].cnt}>">
+                                                <{$stock[j].name}> (<{$stock[j].cnt}> på lager)
+                                                <{if $attribute_price}>
+                                                &nbsp;(<{$attribute_price|number_format:2:",":"."}> <{$webshop->getCurrency()}>)
+                                                <{/if}>
+                                            </option>
+                                        <{/section}>
+                                    </select>
+                                    <{/if}>
+                                <{elseif $attr[j]->getDataType() == "string"}>
+                                <input type="text" name="attributes[<{$attr[j]->getAttributeId()}>]" id="a<{$attr[j]->getAttributeId()}>" class="attribute"/>
+                                <{elseif $attr[j]->getDataType() == "integer"}>
+                                <input type="text" name="attributes[<{$attr[j]->getAttributeId()}>]" id="a<{$attr[j]->getAttributeId()}>" class="attribute"/>
+                                <{elseif $attr[j]->getDataType() == "boolean"}>
+                                <input type="checkbox" name="attributes[<{$attr[j]->getAttributeId()}>]" value="1" id="a<{$attr[j]->getAttributeId()}>" class="attribute"/>
+                                <{/if}>
+                            <{/if}>
+                        </div>
+                    <{/section}>
                 </div>
             <{else}>
                 <input type="hidden" id="single-stock-amount" value="<{$product->getInStock($attributes[0].id, $attributes[0].value_id)}>">

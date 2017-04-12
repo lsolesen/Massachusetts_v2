@@ -82,9 +82,9 @@
 
 
         <{if $settings.Produktlister.Laegikurvfraliste == 'ja'}>
-            <{assign var="profile" value=$product->getProfile()}>
-            <{assign var="attr" value=$profile->getAttributeList()}>
             <{if $product->getIsInStock()}>
+                <{assign var="profile" value=$product->getProfile()}>
+                <{assign var="attr" value=$profile->getAttributeList()}>
                 <form action="" method="post" class="putinbasketform">
                     <input type="hidden" name="product_id" value="<{$product->getProductId()}>"/>
                     <input type="hidden" name="redirect" value="<{$product->getMetaValue('redirect')|escape}>"/>
@@ -94,21 +94,21 @@
                                 <{section name="j" loop=$attr}>
                                     <{if $attr[j]->getIsVariant()}>
                                         <{if $attr[j]->getDataType() == "valuelist"}>
-                                            <{assign var="values" value=$attr[j]->getValues()}>
-                                            <select name="attributes[<{$attr[j]->getAttributeId()}>]" id="a<{$attr[j]->getAttributeId()}>" class="product-variant-selectbox" required>
+                                            <{assign var="attr_stock" value=$product->getInStockVariants()}>
+                                            <{if $attr_stock}>
+                                            <select name="attributes[<{$attr_stock[0].attribute_id}>]" id="a<{$attr_stock[0].attribute_id}>" class="product-variant-selectbox" required="required">
                                                 <option value="" disabled="disabled" selected>Vælg variant</option>
-                                                <{section name="k" loop=$values}>
-                                                    <{assign var="attribute_price" value=$product->getAttributePrice($values[k]->getAttributeValueId())}>
-                                                    <{if $product->getInStock($attr[j]->getAttributeId(), $values[k]->getAttributeValueId()) > 0}>
-                                                        <option value="<{$values[k]->getAttributeValueId()}>" data-stockamount="<{$product->getInStock($attr[j]->getAttributeId(), $values[k]->getAttributeValueId())}>">
-                                                            <{$values[k]->getVal()|escape}>
-                                                            <{if $attribute_price}>
-                                                                &nbsp;(<{$attribute_price|number_format:2:",":"."}> <{$webshop->getCurrency()}>)
-                                                            <{/if}>
-                                                        </option>
+                                                <{section name="j" loop=$attr_stock}>
+                                                <{assign var="attribute_price" value=$product->getAttributePrice($attr_stock[j].attribute_value_id)}>
+                                                <option value="<{$attr_stock[j].attribute_value_id}>" data-stockamount="<{$attr_stock[j].cnt}>">
+                                                    <{$attr_stock[j].name}> (<{$attr_stock[j].cnt}> på lager)
+                                                    <{if $attribute_price}>
+                                                    &nbsp;(<{$attribute_price|number_format:2:",":"."}> <{$webshop->getCurrency()}>)
                                                     <{/if}>
+                                                </option>
                                                 <{/section}>
                                             </select>
+                                            <{/if}>
                                         <{elseif $attr[j]->getDataType() == "string"}>
                                             <input type="text" name="attributes[<{$attr[j]->getAttributeId()}>]" id="a<{$attr[j]->getAttributeId()}>" class="attribute"/>
                                         <{elseif $attr[j]->getDataType() == "integer"}>
