@@ -94,14 +94,13 @@
                                 <{section name="j" loop=$attr}>
                                     <{if $attr[j]->getIsVariant()}>
                                         <{if $attr[j]->getDataType() == "valuelist"}>
-                                            <{assign var="attr_stock" value=$product->getInStockVariants()}>
                                             <{if $attr_stock}>
                                             <select name="attributes[<{$attr_stock[0].attribute_id}>]" id="a<{$attr_stock[0].attribute_id}>" class="product-variant-selectbox" required="required">
                                                 <option value="" disabled="disabled" selected>Vælg variant</option>
-                                                <{section name="j" loop=$attr_stock}>
-                                                <{assign var="attribute_price" value=$product->getAttributePrice($attr_stock[j].attribute_value_id)}>
-                                                <option value="<{$attr_stock[j].attribute_value_id}>" data-stockamount="<{$attr_stock[j].cnt}>">
-                                                    <{$attr_stock[j].name}> (<{$attr_stock[j].cnt}> på lager)
+                                                <{section name="l" loop=$attr_stock}>
+                                                <{assign var="attribute_price" value=$product->getAttributePrice($attr_stock[l].attribute_value_id)}>
+                                                <option value="<{$attr_stock[l].attribute_value_id}>" data-stockamount="<{$attr_stock[l].cnt}>">
+                                                    <{$attr_stock[l].name}> (<{$attr_stock[l].cnt}> på lager)
                                                     <{if $attribute_price}>
                                                     &nbsp;(<{$attribute_price|number_format:2:",":"."}> <{$webshop->getCurrency()}>)
                                                     <{/if}>
