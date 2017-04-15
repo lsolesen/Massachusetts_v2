@@ -1,5 +1,6 @@
 <{strip}>
 <{capture name="title"}><{$product->getName()}><{/capture}>
+<{assign var="news_until" value=$settings.globale.NyhedIndtil|default:480}>
 <{assign var="images" value=$product->getImages()}>
 
 <div id="site" class="productpage">
@@ -16,7 +17,17 @@
                        <img src="<{$images[j]->getSrc(770, 770, 'fit')}>" class="lazyOwl" alt="<{$images[j]->getDescription()|escape}>"  itemprop="image">
                        <{/section}>
                    </div>
-               </div>
+                    <{if $product->getSalePrice() > 0}>
+                        <div class="product-highlight offer">
+                            <{math assign="pricedif" equation='a-b' a=$product->getPrice() b=$product->getSalePrice() }>
+                            <{math assign="savepercent" equation='c/d*100' c=$pricedif d=$product->getPrice()}>
+                            -<{$savepercent|number_format:0}>%
+                        </div>
+                    <{elseif $product->getOnlineHours() < $news_until}>
+                        <div class="product-highlight news">NYHED</div>
+                    <{/if}>
+
+                </div>
                <div class="col-xs-12 col-sm-7 col-md-6">
                     <div id="product-info-container">
                         <h1 itemprop="name"><{$product->getName()|escape}></h1>
