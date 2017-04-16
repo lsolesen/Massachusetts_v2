@@ -20,20 +20,20 @@
 <{assign var="splat" value=$product->getMetaValue('splat') }>
 <{assign var="images" value=$product->getImages()}>
 <{assign var="supplier" value=$product->getSupplier()}>
-<{assign var="attr_stock" value=$product->getInStockVariants()}>
+<{assign var="stock" value=$product->getInStockVariants()}>
 
 <li rel="product" data-id="<{$product->getProductId()}>"<{if $supplier}> data-brand="<{$supplier->getName()}>" <{/if}> class="col-xs-12 col-sm-4 col-md-3 product-teaser <{$product->getCategoryNames("filter-"," ")}> <{if $supplier}> filter-<{$supplier->getName()|lower|replace:' ':'_'|replace:'.':'_'}><{/if}>" itemscope itemtype="http://schema.org/Product">
     <div class="product-teaser-inner">
         <a href="<{$product->getRemoteUrl()|escape}>" title="<{$product->getName()|escape}>">
             <div class="sizes">
-                <{if $attr_stock}>
+                <{if $stock}>
                 <span>Varianter på lager:</span>
                 <ul>
                     <{assign var="c" value=0}>
-                    <{section name="a" loop=$attr_stock}>
-                        <{if $attr_stock[a].attribute_value_id > 1}>
+                    <{section name="a" loop=$stock}>
+                        <{if $stock[a].attribute_value_id > 1}>
                             <{if $c < 10}>
-                                <li><{$attr_stock[a].name}></li>
+                                <li><{$stock[a].name}></li>
                             <{elseif $c == 10}>
                                 <li>mere...</li>
                             <{/if}>
@@ -90,7 +90,30 @@
                     <input type="hidden" class="form-control amount-input" name="amount" value="1">
                     <div class="product-teaser-cta">
                         <{if $product->hasVariant()}>
-                            <{include file="_include_addtocart-select.html" stock=$attr_stock}>
+                            <{if $stock}>
+                                <{if $stock[j].data_type == "valuelist"}>
+                                    <select name="attributes[<{$stock[j].attribute_id}>]" id="a<{$stock[j].attribute_id}>" class="product-variant-selectbox" required="required">
+                                        <option value="" disabled="disabled" selected>Vælg variant</option>
+                                        <{section name="j" loop=$stock}>
+                                        <{if $stock[j].attribute_value_id > 1}>
+                                        <{assign var="attribute_price" value=$stock[j].variant_price_incl_vat)}>
+                                        <option value="<{$stock[j].attribute_value_id}>" data-stockamount="<{$stock[j].cnt}>">
+                                            <{$stock[j].name}> (<{$stock[j].cnt}> på lager)
+                                            <{if $attribute_price > 0}>
+                                            &nbsp;(<{$attribute_price|number_format:2:",":"."}> <{$webshop->getCurrency()}>)
+                                            <{/if}>
+                                        </option>
+                                        <{/if}>
+                                        <{/section}>
+                                    </select>
+                                <{elseif $stock[j].data_type == "string"}>
+                                    <input type="text" name="attributes[<{$stock[0].attribute_id}>]" id="a<{$stock[0].attribute_id}>" class="attribute"/>
+                                <{elseif $stock[j].data_type == "integer"}>
+                                    <input type="text" name="attributes[<{$stock[0].attribute_id}>]" id="a<{$stock[0].attribute_id}>" class="attribute"/>
+                                <{elseif $stock[j].data_type == "boolean"}>
+                                    <input type="checkbox" name="attributes[<{$stock[0].attribute_id}>]" value="1" id="a<{$stock[0].attribute_id}>" class="attribute"/>
+                                <{/if}>
+                            <{/if}>
                         <{else}>
                             <input type="hidden" class="single-stock-amount" value="<{$product->getInStock($attributes[0].id, $attributes[0].value_id)}>">
                         <{/if}>
