@@ -80,7 +80,6 @@
             </div>
         </a>
 
-
         <{if $settings.Produktlister.Laegikurvfraliste == 'ja'}>
             <{if $product->getIsInStock()}>
                 <form action="" method="post" class="putinbasketform">
@@ -89,26 +88,7 @@
                     <input type="hidden" class="form-control amount-input" name="amount" value="1">
                     <div class="product-teaser-cta">
                         <{if $product->hasVariant()}>
-                                <{section name="j" loop=$attr_stock}>
-                                    <{if $attr_stock[j].data_type == "valuelist"}>
-                                        <select name="attributes[<{$attr_stock[j].attribute_id}>]" id="a<{$attr_stock[j].attribute_id}>" class="product-variant-selectbox" required="required">
-                                            <option value="" disabled="disabled" selected>Vælg variant</option>
-                                            <{assign var="attribute_price" value=$attr_stock[j].variant_price_incl_vat)}>
-                                            <option value="<{$attr_stock[j].attribute_value_id}>" data-stockamount="<{$attr_stock[j].cnt}>">
-                                                <{$attr_stock[j].name}> (<{$attr_stock[j].cnt}> på lager)
-                                                <{if $attribute_price}>
-                                                    &nbsp;(<{$attribute_price|number_format:2:",":"."}> <{$webshop->getCurrency()}>)
-                                                <{/if}>
-                                            </option>
-                                        </select>
-                                    <{elseif $attr_stock[j].data_type == "string"}>
-                                        <input type="text" name="attributes[<{$attr_stock[j].attribute_id}>]" id="a<{$attr_stock[j].attribute_id}>" class="attribute"/>
-                                    <{elseif $attr_stock[j].data_type == "integer"}>
-                                        <input type="text" name="attributes[<{$attr_stock[j].attribute_id}>]" id="a<{$attr_stock[j].attribute_id}>" class="attribute"/>
-                                    <{elseif $attr_stock[j].data_type == "boolean"}>
-                                        <input type="checkbox" name="attributes[<{$attr_stock[j].attribute_id}>]" value="1" id="a<{$attr_stock[j].attribute_id}>" class="attribute"/>
-                                    <{/if}>
-                                <{/section}>
+                            <{include file="_include_addtocart-select.html" stock=$attr_stock}>
                         <{else}>
                             <input type="hidden" class="single-stock-amount" value="<{$product->getInStock($attributes[0].id, $attributes[0].value_id)}>">
                         <{/if}>
