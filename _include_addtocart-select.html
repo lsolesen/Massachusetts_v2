@@ -3,15 +3,13 @@
         <select name="attributes[<{$stock[j].attribute_id}>]" id="a<{$stock[j].attribute_id}>" class="product-variant-selectbox" required="required">
             <option value="" disabled="disabled" selected>Vælg variant</option>
             <{section name="j" loop=$stock}>
-                <{if $stock[j].attribute_value_id > 1}>
-                    <{assign var="attribute_price" value=$stock[j].variant_price_incl_vat)}>
-                    <option value="<{$stock[j].attribute_value_id}>" data-stockamount="<{$stock[j].cnt}>">
-                        <{$stock[j].name}> (<{$stock[j].cnt}> på lager)
-                        <{if $attribute_price > 0}>
-                            &nbsp;(<{$attribute_price|number_format:2:",":"."}> <{$webshop->getCurrency()}>)
-                        <{/if}>
-                    </option>
-                <{/if}>
+                <{assign var="attribute_price" value=$stock[j].variant_price_incl_vat)}>
+                <option value="<{$stock[j].attribute_value_id}>" data-stockamount="<{$stock[j].cnt}>">
+                    <{$stock[j].name}> (<{$stock[j].cnt}> på lager)
+                    <{if $attribute_price > 0}>
+                        &nbsp;(<{$attribute_price|number_format:2:",":"."}> <{$webshop->getCurrency()}>)
+                    <{/if}>
+                </option>
             <{/section}>
         </select>
     <{elseif $stock[j].data_type == "string"}>
