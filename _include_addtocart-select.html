@@ -1,5 +1,5 @@
 <{if $stock}>
-    <{if $stock[1].attribute_id == 0}>
+    <{if $stock[1].attribute_id && $stock[1].attribute_id == 0}>
         <{assign var="key" value="2"}>
     <{elseif $stock[0].attribute_id == 0}>
         <{assign var="key" value="1"}>
