@@ -1,6 +1,9 @@
+<{assign var="start_from" value=$start_from|default:0}>
+<{assign var="limit" value=$limit|default:1000}>
+
 <ul class="product-list" itemscope itemtype="http://schema.org/ItemList">
 
-    <{section name="i" loop=$products}>
+    <{section name="i" loop=$products start=$start_from max=$limit}>
         <{include file="_include_inner-product.html" product=$products[i]}>
     <{/section}>
 
