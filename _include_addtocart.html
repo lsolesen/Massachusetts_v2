@@ -32,10 +32,8 @@
                     <{assign var="stock" value=$product->getInStockVariants()}>
                     <{section name="j" loop=$stock}>
                         <div>
-                            <{if $stock}>
                                 <{if $stock[j].data_type == "valuelist"}>
-                                    <{if $stock}>
-                                    <select name="attributes[<{$stock[0].attribute_id}>]" id="a<{$stock[0].attribute_id}>" class="attribute required variant" required="required">
+                                    <select name="attributes[<{$stock[j].attribute_id}>]" id="a<{$stock[j].attribute_id}>" class="attribute required variant" required="required">
                                         <option value="" disabled="disabled" selected>Vælg variant</option>
                                         <{section name="j" loop=$stock}>
                                             <{assign var="attribute_price" value=$stock[j].variant_price_incl_vat}>
@@ -47,7 +45,6 @@
                                             </option>
                                         <{/section}>
                                     </select>
-                                    <{/if}>
                                 <{elseif $stock[j].data_type == "string"}>
                                 <input type="text" name="attributes[<{$stock[j].attribute_id}>]" id="a<{$stock[j].attribute_id}>" class="attribute"/>
                                 <{elseif $stock[j].data_type == "integer"}>
@@ -55,7 +52,6 @@
                                 <{elseif $stock[j].data_type == "boolean"}>
                                 <input type="checkbox" name="attributes[<{$stock[j].attribute_id}>]" value="1" id="a<{$stock[j].attribute_id}>" class="attribute"/>
                                 <{/if}>
-                            <{/if}>
                         </div>
                     <{/section}>
                 </div>
