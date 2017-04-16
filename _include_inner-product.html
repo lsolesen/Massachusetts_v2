@@ -31,10 +31,12 @@
                 <ul>
                     <{assign var="c" value=0}>
                     <{section name="a" loop=$attr_stock}>
-                        <{if $c < 10}>
-                        <li><{$attr_stock[a].name}></li>
-                        <{elseif $c == 10}>
-                        <li>mere...</li>
+                        <{if $attr_stock[a].attribute_value_id > 1}>
+                            <{if $c < 10}>
+                                <li><{$attr_stock[a].name}></li>
+                            <{elseif $c == 10}>
+                                <li>mere...</li>
+                            <{/if}>
                         <{/if}>
                     <{/section}>
                 </ul>
