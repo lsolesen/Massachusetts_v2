@@ -19,7 +19,7 @@
                             <select id="attr_<{$b_product->getProductId()}>" name="b_attributes[<{$b_product->getProductId()}>][<{$b_stock[0].attribute_id}>]" required="required">
                                 <option value="" disabled="disabled" selected>Vælg variant</option>
                                 <{section name="j" loop=$b_stock}>
-                                    <option value="<{$b_stock[i].attribute_value_id}>"><{$b_stock[j].name}> (<{$b_stock[j].cnt}> på lager)</option>
+                                    <option value="<{$b_stock[j].attribute_value_id}>"><{$b_stock[j].name}> (<{$b_stock[j].cnt}> på lager)</option>
                                 <{/section}>
                             </select>
                         <{/if}>
