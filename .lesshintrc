@@ -9,13 +9,9 @@
 
     "idSelector": false,
 
-    "propertyOrdering": false,
-
     "hexLength": false,
 
     "decimalZero": false,
-
-    "newlineAfterBlock": false,
 
     "singleLinePerSelector": false,
 

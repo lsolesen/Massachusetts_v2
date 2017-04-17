@@ -6,7 +6,8 @@ var gulp = require('gulp'),
     lesshint = require('gulp-lesshint'),
     jslint = require('gulp-jslint'),
     concat = require('gulp-concat'),
-    uglify = require('gulp-uglify');
+    uglify = require('gulp-uglify'),
+    autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('watch', function () {
     gulp.watch([ './__dev/less/styles.less', './__dev/less/theme-styling.less' ], ['less']);
@@ -16,6 +17,13 @@ gulp.task('less', function () {
     gulp.src([ './__dev/less/styles.less', './__dev/less/theme-styling.less' ])
         .pipe(plumber())
         .pipe(less())
+        .pipe(autoprefixer({
+            cascade: false,
+            browsers: [
+                "> 1%",
+                "last 6 versions",
+                "iOS 8"]
+        }))
         .pipe(gulp.dest('./css/'))
         .pipe(cssmin())
         .pipe(rename({
