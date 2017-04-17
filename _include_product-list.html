@@ -6,10 +6,10 @@
     <{section name="i" loop=$products start=$start_from max=$limit}>
    
     <{assign var="innerproduct" value="product_cache_"|cat:$products[i]->getProductId()}>
-    <{if $settings.Caching.MaxLevetidProduktTeaser && $settings.Caching.MinLevetidProduktTeaser}>
-    <{assign var="randomttl" value=$settings.Caching.MinLevetidProduktTeaser|mt_rand:$settings.Caching.MaxLevetidProduktTeaser}>
+    <{if isset($settings.Caching.MaxLevetidProduktTeaser) && isset($settings.Caching.MinLevetidProduktTeaser)}>
+        <{assign var="randomttl" value=$settings.Caching.MinLevetidProduktTeaser|mt_rand:$settings.Caching.MaxLevetidProduktTeaser}>
     <{else}>
-    <{assign var="randomttl" value=43200|mt_rand:86400}>
+        <{assign var="randomttl" value=43200|mt_rand:86400}>
     <{/if}>
 
     <{get_cache name=$innerproduct ttl=$randomttl assign="inner_product_cached_data"}>
@@ -20,9 +20,8 @@
 
     <{else}>
 
-    <{cache name=$innerproduct}>
+    <{* cache name=$innerproduct *}>
 
-    <{assign var="splat" value=$products[i]->getMetaValue('splat') }>
     <{assign var="images" value=$products[i]->getImages()}>
     <{assign var="supplier" value=$products[i]->getSupplier()}>
     <{assign var="stock" value=$products[i]->getInStockVariants()}>
@@ -115,7 +114,7 @@
         <{/if}>
     </div>
     </li>
-    <{/cache}>
+    <{* /cache *}>
     <{/if}>
     <{/section}>
 
