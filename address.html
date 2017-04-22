@@ -17,12 +17,12 @@
                         <div id="payment-address">
                             <div class="form-row form-row-input">
                                 <label for="order_name">Navn</label>
-                                <input type="text" name="order_name" value="" id="order_name" placeholder="Navn" required/>
+                                <input type="text" name="order_name" value="" id="order_name" placeholder="Navn" autocomplete="name" required/>
                             </div>
                             <{if $settings.CheckoutFlow.FirmaOgEANOplysninger == 'ja'}>
                             <div class="form-row form-row-input">
                                 <label for="order_company_name">Evt. firmanavn, organisation eller institution</label>
-                                <input type="text" name="order_company_name" value="" id="order_company_name" placeholder="Evt. firmanavn">
+                                <input type="text" name="order_company_name" value="" id="order_company_name" placeholder="Evt. firmanavn" autocomplete="organization">
                             </div>
                             <div class="form-row form-row-input" id="vat-number">
                                 <label for="vat_number">Evt. CVR-nummer</label>
@@ -73,26 +73,30 @@
 
                             <div class="form-row form-row-input">
                                 <label for="email">Email</label>
-                                <input type="email" name="email" value="" id="email" placeholder="Email" required/>
+                                <input type="email" name="email" value="" id="email" placeholder="Email" autocomplete="home email" required/>
                             </div>
                             <div class="form-row form-row-input">
                                 <label for="phone">Telefonnummer</label>
-                                <input type="tel" name="phone" value="" id="phone" placeholder="Telefonnr." required/>
+                                <input type="tel" name="phone" value="" id="phone" placeholder="Telefonnr." autocomplete="home tel" required/>
                             </div>
                             <{if $settings.CheckoutFlow.FirmaOgEANOplysninger == 'ja'}>
                                 <div class="form-row form-row-input" id="ean-number">
                                     <label for="ean_number">Evt. EAN-nummer</label>
-                                    <input type="text" name="ean_number" value="" id="ean_number" minlength="13" maxlength="13" placeholder="EAN-nummer - skal KUN udfyldes hvis der betales via EAN faktura">
+                                    <input type="text" name="ean_number" value="" id="ean_number" minlength="13" maxlength="13" placeholder="EAN-nummer - skal KUN udfyldes hvis der betales via EAN faktura" autocomplete="off">
                                 </div>
                                 <script type="text/javascript">
                                     $(document).ready(function() {
-                                        console.log('Getting ready to change');
-                                        $('#order_company_name').change(function() {
+                                        $('#order_company_name').on('keyup touchend input', function() {
                                             $('#vat-number').toggle($(this).val().length !== 0);
                                             $('#ean-number').toggle($(this).val().length !== 0);
+                                            if ($('#order_company_name').val().length === 0) {
+                                                $('#ean_number').val("");
+                                            }
                                         });
-                                        $('#vat-number').hide();
-                                        $('#ean-number').hide();
+                                        if ($('#order_company_name').val().length === 0) {
+                                            $('#vat-number').hide();
+                                            $('#ean-number').hide();
+                                        }
                                     });
                                 </script>
                             <{/if}>
@@ -105,7 +109,7 @@
 
                         <div class="checkbox" style="clear:both">
                             <label class="checkboxlabel">
-                                <input type="checkbox" name="del_address" id="del_address"/> Alternativ leveringsadresse
+                                <input type="checkbox" name="show_del_address" id="show_del_address"/> Alternativ leveringsadresse
                             </label>
                         </div>
 
