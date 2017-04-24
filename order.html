@@ -44,7 +44,7 @@
 
         </div>
 
-        <{if !$order->getPaid()}>
+        <{if !$order->getPaid() && $order->getStatus() != "cancelled"}>
             <div class="order-section">
                 <{if $order->getEanNumber()}>
                 <p>Du har valgt at betale via EAN på nummer: "<{$order->getEanNumber()}>", men ordren er endnu ikke betalt.</p>
