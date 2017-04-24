@@ -1,0 +1,22 @@
+<{assign var="subject_text" value="Hvad synes du dine varer?"}>
+<{if $subject}>
+
+    <{$subject_text}>
+
+<{else}>
+
+    <{include file="_include_mails-header.html" title=$subject_text}>
+
+    <p>Hej,</p>
+
+    <p>Vi bliver rigtig glade, hvis du vil <a href="<{$order->getPublicUrl('product_review')}>">skrive en anmeldelse af de produkter</a>, du har købt hos os:</p>
+
+    <{include file="_include_mails-productlist.html" products=$order->getProducts()}>
+
+    <{include file="_include_mails-cta.html" cta="Del din anmeldelse og gør andre klogere" url=$order->getPublicUrl('product_review')}>
+
+    <p>Med venlig hilsen<br><{$webshop->getName()}></p>
+
+    <{include file="_include_mails-footer.html"}>
+
+<{/if}>

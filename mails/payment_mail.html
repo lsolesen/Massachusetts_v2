@@ -1,0 +1,25 @@
+<{assign var="subject_text" value="Manglende betaling for ordre"}>
+<{if $subject}>
+
+	<{$subject_text}>
+	
+<{else}>
+
+	<{include file="_include_mails-header.html" title=$subject_text}>
+
+	<p>Hej,</p>
+
+	<p>Du har en ordre liggende hos os, som endnu ikke er betalt. Du har bestilt de følgende:</p>
+
+	<{include file="_include_mails-productlist.html" products=$order->getProducts()}>
+
+	<p>Skriv meget gerne, hvis du har spørgsmål, eller der skete en eller anden fejl undervejs i din bestilling, så du ikke kunne betale ordren.</p>
+
+	<{include file="_include_mails-cta.html" cta="Se din ordre og betal" url=$order->getPublicUrl()|escape}>
+
+	<p>Med venlig hilsen<br><{$webshop->getName()}></p>
+
+	<p>P.S. Hvis du ikke længere ønsker ordren, er du meget velkommen til at skrive og annullere den.</p>
+
+	<{include file="_include_mails-footer.html"}>
+<{/if}>

@@ -1,0 +1,37 @@
+<{assign var="subject_text" value="Kan vi hjælpe med noget?"}>
+<{if $subject}>
+
+	<{$subject_text}>
+	
+<{else}>
+
+	<{include file="_include_mails-header.html" title=$subject_text}>
+
+	<p>Hej,</p>
+
+	<p>Jeg er en robot, der holder øje med webshoppen <a href="<{$basket_url|escape}>"><{$webshop->getName()|escape}></a>. Jeg har lagt mærke til, at du har lagt varer i kurven hos <a href="<{$basket_url|escape}>">kurven</a>, men af en eller anden grund lykkedes det ikke at gennemføre ordren.</p>
+
+	<{strip}>
+	<p>Du skal vide, at vi meget gerne personligt vil hjælpe dig, hvis noget gik galt, du blev i tvivl om noget eller har brug for hjælp til noget. Du kan kontakte os
+		<{if $settings.Footer.Email && $settings.Footer.Telefon}>
+		på <{$settings.Footer.Telefon}> eller <{$settings.Footer.Email}>
+		<{else}>
+		eller ved at svare på denne e-mail
+		<{/if}>.
+	</p><{/strip}>
+
+	<p>Du har lagt følgende i kurven:</p>
+
+	<{section name="i" loop=$basket}>
+		<{include file="_include_mails-product.html" product=$basket[i].product}>
+	<{/section}>
+
+	<p>Kontakt os endelig, hvis du har spørgsmål eller er i tvivl om noget.</p>
+
+	<{include file="_include_mails-cta.html" cta="Se til din kurv" url=$basket_url|escape}>
+
+	<p>Med venlig hilsen<br><{$webshop->getName()}></p>
+
+	<{include file="_include_mails-footer.html"}>
+
+<{/if}>

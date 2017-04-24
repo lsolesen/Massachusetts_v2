@@ -1,0 +1,31 @@
+<{assign var="subject_text" value="For noget tid siden købte du..."}>
+<{if $subject}>
+
+	<{$subject_text}>
+
+<{else}>
+
+	<{include file="_include_mails-header.html" title=$subject_text}>
+
+	<p>Hej,</p>
+
+	<p>For noget tid siden købte du:</p>
+
+	<{assign var="products" value=$order->getProducts()}>
+	<{include file="_include_mails-productlist.html" products=$products}>
+
+	<p>Vi er meget interesseret i at høre, om vi kunne have gjort noget bedre - eller du har nogen spørgsmål?</p>
+
+	<p>Med venlig hilsen<br><{$webshop->getName()}></p>
+
+	<{assign var="loop" value=$webshop->getAfterPurchase($products)}>
+
+	<{if $loop}>
+		<p>P.S. Måske kunne du også være interesseret i følgende:</p>
+
+		<{include file="_include_mails-products-upsell.html" products=$loop}>
+	<{/if}>
+
+	<{include file="_include_mails-footer.html"}>
+
+<{/if}>
