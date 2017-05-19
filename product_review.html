@@ -22,6 +22,16 @@
 
                 <{include file="_include_socialicons.html"}>
 
+                <{if $settings.Anmeldelse.Aktiv == 'ja'}>
+                    <{if $get.ratings==1 || $get.ratings==2}>
+                        <p>P.S.Hvorfor levede produktet ikke op til dine forventninger? Vi vil rigtig gerne høre fra dig, hvis du vil dele din oplevelse:</p>
+                        <p><a class="btn btn-lg btn-primary" href="mailto:<{$settings.Footer.Email}>">Send os en mail</a></p>
+                    <{/if}>
+                    <{if $get.ratings==5}>
+                        <p>P.S. Vi vil blive rigtig glade, hvis du vil dele din oplevelse med at handle hos os. Det tager kun 2 minutter og betyder meget for os:</p>
+                        <{include file="_include_shop-review.html"}>
+                    <{/if}>
+                <{/if}>
             </div>
         </div>
     </div>
