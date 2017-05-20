@@ -141,3 +141,10 @@
     }
 </script>
 <{/strip}>
+<script type="text/javascript">
+    var google_tag_params = {
+        ecomm_prodid: ['<{$product->getProductId()}>'],
+        ecomm_pagetype: 'product',
+        ecomm_totalvalue: '<{$product->getRealPrice()|number_format:2:".":""}>'
+    };
+</script>
