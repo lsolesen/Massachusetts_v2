@@ -53,3 +53,9 @@
     <{/if}>
 
 <{/if}>
+
+<script type="text/javascript">
+    if (fbq) {
+        fbq('track', 'Purchase', {value: '<{$order->getPrice()|number_format:2:".":""}>', currency: 'DKK'});
+    }
+</script>

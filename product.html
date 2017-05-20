@@ -135,5 +135,9 @@
 </div><!--/#site-->
 
 <{include file="_include_side-basket.html"}>
-
+<script>
+    if(_fbq) {
+        _fbq.push('track', 'ViewContent', {content_ids: ['<{$product->getProductId()}>'], content_type: 'product'});
+    }
+</script>
 <{/strip}>
