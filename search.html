@@ -11,14 +11,14 @@
                     <{if $get.search|count_characters < 3}>
                         <p class="alert alert-warning">Du har søgt efter "<{$get.search|escape}>". Søgemaskinen fungerer desværre kun med tre eller flere karakterer.</p>
                         <{if $settings.Search.KortStrengBesked}>
-                            <p class="alert alert-info"><{$settings.Search.Besked|escape}></p>
+                            <p class="alert alert-info"><{$settings.Search.KortStrengBesked|escape}></p>
                         <{/if}>
                     <{/if}>
                 <{else}>
                     <h1>Søgning</h1>
                 <{/if}>
                 <p>Resultater: <{$count}></p>
-                <{if $settings.Search.TomBesked}>
+                <{if $count == 0 && $settings.Search.TomBesked}>
                     <div class="alert alert-info">
                         <p><{$settings.Search.TomBesked|escape}></p>
                         <{if $settings.Search.GoogleLinkVedTom == 'ja'}>
